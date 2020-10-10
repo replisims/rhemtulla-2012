@@ -10,7 +10,7 @@
 #'   "extreme-alt")}. By default (\code{sym}), the data is divided into equally
 #'   distanced cut-off points between -2.5 and 2.5. In \code{moderate}
 #'   asymmetry, cut-offs are chosen so that the peak of a normal distribution
-#'   falls on the left-hand side. \code{extreme} assymmetry results in a
+#'   falls on the left-hand side. \code{extreme} asymmetry results in a
 #'   distribution where the first category has the highest number of cases.
 #'   'alt' versions of the distributions invert the cut-off points.
 #' @param standardize   Boolean. Should parameters be standardized before
