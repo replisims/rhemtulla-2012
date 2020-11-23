@@ -4,7 +4,7 @@
 \alias{catData}
 \title{Categorize continuous data}
 \usage{
-catData(data, k = 4, asym = "sym", standardize = FALSE)
+catData(data, k = 4, sym = "sym", standardize = FALSE)
 }
 \arguments{
 \item{data}{A numerical data.frame, matrix or vector to be categorized.}
@@ -12,7 +12,7 @@ catData(data, k = 4, asym = "sym", standardize = FALSE)
 \item{k}{The number of categories to divide the data into. An integer
 between 2 and 7.}
 
-\item{asym}{One of \code{c("sym", "moderate", "extreme", "moderate-alt",
+\item{sym}{One of \code{c("sym", "moderate", "extreme", "moderate-alt",
 "extreme-alt")}. By default (\code{sym}), the data is divided into equally
 distanced cut-off points between -2.5 and 2.5. In \code{moderate}
 assymmetry, cut-offs are chosen so that the peak of a normal distribution

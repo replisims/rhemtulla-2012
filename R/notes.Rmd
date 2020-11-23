@@ -1,0 +1,25 @@
+---
+title: "notes"
+author: "Arjan Huizing"
+date: "17 oktober 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## notes 
+
+**dont push me**
+
+*to-do*
+
+getModel: more user-friendly
+getSims: make this work with the model files maybe?
+catData: user cats?
+plotSims: maybe maybe maybe
+
+assumptions made:
+
+- CFA model with 20 indicators assumed to have 2 of each loading (.3, .4, .5, .6 and .7)

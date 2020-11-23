@@ -16,5 +16,6 @@ Depends:
 Imports:
     dplyr (>= 0.8.2),
     lavaan,
-    simsem
+    simsem,
+    tidyr
 RoxygenNote: 7.1.1

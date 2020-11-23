@@ -6,7 +6,7 @@
 #' @param data    A numerical data.frame, matrix or vector to be categorized.
 #' @param k       The number of categories to divide the data into. An integer
 #'   between 2 and 7.
-#' @param asym    One of \code{c("sym", "moderate", "extreme", "moderate-alt",
+#' @param sym    One of \code{c("sym", "moderate", "extreme", "moderate-alt",
 #'   "extreme-alt")}. By default (\code{sym}), the data is divided into equally
 #'   distanced cut-off points between -2.5 and 2.5. In \code{moderate}
 #'   assymmetry, cut-offs are chosen so that the peak of a normal distribution
@@ -16,21 +16,21 @@
 #' @param standardize   Boolean. Should parameters be standardized before
 #'   transformation?
 #' @export
-catData <- function(data, k = 4, asym = "sym", standardize = FALSE){
+catData <- function(data, k = 4, sym = "sym", standardize = FALSE){
   # error checks
   if (k < 2 | k > 7) stop("k needs to be an integer between 2 and 7")
-  if (!asym %in% c("sym", "moderate", "moderate-alt", "extreme", "extreme-alt"))
+  if (!sym %in% c("sym", "moderate", "moderate-alt", "extreme", "extreme-alt"))
     stop("sym parameter needs to be one of: sym, moderate, moderate-alt, extreme, extreme-alt")
 
   # standardize if needed
   if (standardize) data <- data/apply(data, 2, function(x) sd(x, na.rm = TRUE))
 
   # get the cut-off points
-  if (asym == "sym"){
+  if (sym == "sym"){
     sds <- seq(-2.5, 2.5, by = 5/k)
     sds[1] <- -Inf
     sds[k+1] <- Inf
-  } else if (grepl("moderate", asym)) {
+  } else if (grepl("moderate", sym)) {
     sds <- switch(k-1,
                   '2' = c(-Inf, 0.36, Inf),
                   '3' = c(-Inf, -0.50, 0.76, Inf),
@@ -38,7 +38,7 @@ catData <- function(data, k = 4, asym = "sym", standardize = FALSE){
                   '5' = c(-Inf, -0.70, 0.39, 1.16, 2.05, Inf),
                   '6' = c(-Inf, -1.05, 0.08, 0.81, 1.44, 2.33, Inf),
                   '7' = c(-Inf, -1.43, -0.43, 0.38, 0.94, 1.44, 2.54, Inf))
-  } else if (grepl("extreme", asym)) {
+  } else if (grepl("extreme", sym)) {
     sds <- switch(k-1,
                   '2' = c(-Inf, 1.04, Inf),
                   '3' = c(-Inf, 0.58, 1.13, Inf),
@@ -48,7 +48,7 @@ catData <- function(data, k = 4, asym = "sym", standardize = FALSE){
                   '7' = c(-Inf, -0.25, 0.13, 0.47, 0.81, 1.18, 1.64, Inf))
   }
   # if alt, reverse all values
-  if(grepl("alt", asym)) sds <- sort(sds*-1)
+  if(grepl("alt", sym)) sds <- sort(sds*-1)
 
   # apply cut-offs
   as.data.frame(lapply(data, function(x) cut(x, breaks = sds, labels = FALSE)))
