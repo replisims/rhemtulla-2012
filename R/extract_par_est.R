@@ -1,0 +1,32 @@
+extract_par_est <- function(modfit){
+  load <- lavInspect(object = modfit, 
+                     what = "std")$lambda %>% 
+    as_tibble %>% 
+    rownames_to_column(var = "label") %>% 
+    rowwise() %>% 
+    transmute(label = paste0("b", label),
+              est = sum(f1, f2))
+  
+  s1 <- tibble(label = "s1",
+               est = lavInspect(object = modfit, 
+                                what = "std")$psi[2,1])
+  
+  par_est <- bind_rows(load, s1)
+  
+  se_load <- lavInspect(object = modfit, 
+                        what = "se")$lambda %>% 
+    as_tibble %>% 
+    rownames_to_column(var = "label") %>% 
+    rowwise() %>% 
+    transmute(label = paste0("b", label),
+              se = sum(f1, f2))
+  
+  se_s1 <- tibble(label = "s1",
+                  se = lavInspect(object = modfit, 
+                                  what = "se")$psi[2,1])
+  
+  
+  se <- bind_rows(se_load, se_s1)
+  
+  left_join(par_est, se, by = "label")
+}
