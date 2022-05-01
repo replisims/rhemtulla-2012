@@ -1,4 +1,9 @@
-extract_par_est <- function(modfit){
+#' Extract relevant parameters from a fitted Lavaan model.
+#' 
+#' Internal function to extract parameters of interest from a fitted model.
+#' 
+#' @param modfit a fitted model object
+getEstimates <- function(modfit){
   load <- lavInspect(object = modfit, 
                      what = "std")$lambda %>% 
     as_tibble %>% 

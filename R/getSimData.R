@@ -1,9 +1,9 @@
 # Generate categorical data for all scenarios ------------------------------
-run_rep <- function(run_id, sim_scenarios){
+getSimData <- function(run_id, sim_scenarios){
   
   sim_data <- sim_scenarios %>% 
     rowwise() %>% 
-    mutate(cat_data = list(gen_cat_data(models = models,
+    mutate(cat_data = list(getCatData(models = models,
                                         N = N, 
                                         cat = cat, 
                                         sym = sym, 

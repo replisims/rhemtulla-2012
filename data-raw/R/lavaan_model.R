@@ -1,4 +1,4 @@
-# Model definition
+# Model definition to simulate under the same conditions as Rhemtulla 2012
 
 model_sim <- "f1 =~ 0.3 * y1 + 0.4 * y2 + 0.5 * y3 + 0.6 * y4 + 0.7* y5
             f2 =~ 0.3 *y6 + 0.4 * y7 + 0.5 * y8 + 0.6 * y9 + 0.7 * y10

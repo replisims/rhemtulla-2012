@@ -4,13 +4,11 @@
 \alias{getModel}
 \title{Generate a CFA model}
 \usage{
-getModel(N = 100, loadings = NULL, population = NULL, latent.cor = NULL)
+getModel(loadings = NULL, population = NULL, latent.cor = NULL)
 }
 \arguments{
-\item{N}{The number of cases that should be generated.}
-
 \item{loadings}{Matrix with number of rows equal to the number of
-observed variables, and number of collumns equal to the number of latent
+observed variables, and number of columns equal to the number of latent
 factors. Values specified are fixed factor loadings in the model. \code{NA}
 values indicate freed parameters, and will be estimated.}
 

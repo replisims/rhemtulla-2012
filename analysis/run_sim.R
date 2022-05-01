@@ -1,7 +1,3 @@
-
-# Questions for Arjan -----------------------------------------------------
-# - What is the N in getModel for?
-
 library(tidyverse)
 library(simsem)
 #library(devtools)

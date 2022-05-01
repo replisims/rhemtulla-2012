@@ -4,4 +4,5 @@
 #' @importFrom tidyr       expand_grid
 #' @importFrom simsem      bind binds bindDist model generate
 #' @importFrom stats       sd
+#' @importFrom purrr       possibly
 NULL

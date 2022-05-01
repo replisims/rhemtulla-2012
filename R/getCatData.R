@@ -1,4 +1,4 @@
-#' Title
+#' Generate categorical data
 #'
 #' @param models 
 #' @param N 
@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-gen_cat_data <- function(models, N, cat, sym, dist, seed = 42, ...){
+getCatData <- function(models, N, cat, sym, dist, seed = 42, ...){
   variance <- 0
   pos_def <- TRUE
   
@@ -46,5 +46,3 @@ gen_cat_data <- function(models, N, cat, sym, dist, seed = 42, ...){
   cat_data
   
 }
-
-

@@ -1,16 +1,24 @@
+#' Run the ML models
+#' 
+#' Runs models using Maximum Likelihood (ML) parameter estimation.
+#' 
+#' @param run_id unique identifier for each run
+#' @param id unique identifier for each specified model
+#' @param models model file
+#' @param cat_data categorical data set
 cfa_ML <- function(run_id, id, models, cat_data){
+  # Fit model with ML estimator
   lav_fit <- lavaan::cfa(model = get(models),
                          data = cat_data,
                          std.lv = TRUE, 
                          orthogonal = FALSE,
                          estimator = "MLMV")
-  #se ="robust",
-  #test = c("Satorra.Bentler", "Yuan.Bentler", "Yuan.Bentler.Mplus", "Satterthwaite", "scaled.shifted"))
-  
+
+  # This is for printing updates
   print(c(run_id, id))
   
-  parameter_est <- extract_par_est(lav_fit)
-  
+  # Extract parameter estimates from fitted model
+  parameter_est <- getEstimates(lav_fit)
   
   tibble(rep = run_id,
          scenario_id = id,
@@ -21,14 +29,23 @@ cfa_ML <- function(run_id, id, models, cat_data){
          parameter_est = list(parameter_est),
          test = list(lavInspect(object = lav_fit, 
                                 what = "test")))
+} # end
 
-}
-
+# Wrapper
 posscfa_ML <- possibly(.f = cfa_ML,
                        otherwise = NULL)
 
 
+#' Run the ULS models
+#' 
+#' Runs models using Unweighted Least Squares (ULS) parameter estimation.
+#' 
+#' @param run_id unique identifier for each run
+#' @param id unique identifier for each specified model
+#' @param models model file
+#' @param cat_data categorical data set
 cfa_ULS <- function(run_id, id, models, cat_data){
+  # Fit model with ULS estimator
   lav_fit <- lavaan::cfa(model = get(models),
                          data = cat_data,
                          std.lv = TRUE, 
@@ -38,10 +55,11 @@ cfa_ULS <- function(run_id, id, models, cat_data){
                          #test = c("scaled.shifted"),
                          ordered = TRUE)
   
+  # This is for printing updates
   print(c(run_id, id))
   
-  
-  parameter_est <- extract_par_est(lav_fit)
+  # Extract parameter estimates from fitted model
+  parameter_est <- getEstimates(lav_fit)
   
   tibble(rep = run_id,
          scenario_id = id,
@@ -52,7 +70,8 @@ cfa_ULS <- function(run_id, id, models, cat_data){
          parameter_est = list(parameter_est),
          test = list(lavInspect(object = lav_fit, 
                                 what = "test")))
-}
+} # end
 
+# Wrapper
 posscfa_ULS <- possibly(.f = cfa_ULS,
                         otherwise = NULL)

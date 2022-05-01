@@ -3,7 +3,6 @@
 #' A wrapper function around \code{model} from the package \code{simsem}.
 #' Creates data from a CFA model with normal or non-normal data.
 #'
-#' @param N             The number of cases that should be generated.
 #' @param loadings      Matrix with number of rows equal to the number of
 #'   observed variables, and number of columns equal to the number of latent
 #'   factors. Values specified are fixed factor loadings in the model. \code{NA}
@@ -23,8 +22,7 @@
 #'
 #' data <- getModel(loadings = loadings, population = pop, latent.cor = 0.3)
 #' @export
-getModel <- function(N = 100,
-                    loadings = NULL,
+getModel <- function(loadings = NULL,
                     population = NULL,
                     latent.cor = NULL){
 
