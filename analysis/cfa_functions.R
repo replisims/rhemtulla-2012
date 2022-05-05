@@ -13,7 +13,7 @@
 fitML <- function(datalist){datalist %>% 
     map_df(~{.x$sim_data %>% 
         dplyr::select(id, models, cat_data) %>%  
-        pmap_dfr(.f = function(id, models, cat_data){posscfa_ML(run_id = .x$run_id, 
+        pmap_dfr(.f = function(id, models, cat_data){rhemtulla2012:::posscfa_ML(run_id = .x$run_id, 
                                                                id = id, 
                                                                models = models, 
                                                                cat_data = cat_data)})})

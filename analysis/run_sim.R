@@ -27,7 +27,7 @@ saveRDS(object = sim_scenarios_id,
 
 
 # Generate data -----------------------------------------------------------
-
+set.seed(8361)
 sim_reps50 <- 1:50 %>% map(~{run_rep(run_id = .x, 
                                        sim_scenarios = sim_scenarios_id)})
 saveRDS(object = sim_reps50,

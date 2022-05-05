@@ -7,8 +7,7 @@ getSimData <- function(run_id, sim_scenarios){
                                         N = N, 
                                         cat = cat, 
                                         sym = sym, 
-                                        dist = dist,
-                                        seed = run_id)))
+                                        dist = dist)))
   print(run_id)
   
   list(sim_data = sim_data,

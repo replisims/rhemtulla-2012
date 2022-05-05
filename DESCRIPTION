@@ -17,5 +17,6 @@ Imports:
     dplyr (>= 0.8.2),
     lavaan,
     simsem,
-    tidyr
+    tidyr,
+    purrr
 RoxygenNote: 7.1.2

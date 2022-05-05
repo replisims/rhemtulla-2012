@@ -32,10 +32,10 @@ pop <- matrix(0, 10, 2)
 pop[1:5, 1] <- c(.3, .4, .5, .6, .7)
 pop[6:10, 2] <- c(.3, .4, .5, .6, .7)
 
-sim_model1 <- getModel(N = 100, 
-                       loadings = loadings, 
+sim_model1 <- getModel(loadings = loadings, 
                        population = pop, 
                        latent.cor = 0.3)
+save(sim_model1, file = "data/sim_model1.rda")
 
 # Define model 2 ----------------------------------------------------------
 
@@ -46,7 +46,7 @@ pop2 <- matrix(0, 20, 2)
 pop2[1:10, 1] <- c(.3, .4, .5, .6, .7, .3, .4, .5, .6, .7 )
 pop2[11:20, 2] <- c(.3, .4, .5, .6, .7, .3, .4, .5, .6, .7)
 
-sim_model2 <- getModel(N = 100, 
-                       loadings = loadings2, 
+sim_model2 <- getModel(loadings = loadings2, 
                        population = pop2, 
                        latent.cor = 0.3)
+save(sim_model2, file = "data/sim_model2.rda")

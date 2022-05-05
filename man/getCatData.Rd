@@ -4,26 +4,33 @@
 \alias{getCatData}
 \title{Generate categorical data}
 \usage{
-getCatData(models, N, cat, sym, dist, seed = 42, ...)
+getCatData(models, N, cat, sym, dist, ...)
 }
 \arguments{
-\item{models}{}
+\item{models}{model file}
 
-\item{N}{}
+\item{N}{Amount of cases to generate}
 
-\item{cat}{}
+\item{cat}{Number of categories}
 
-\item{sym}{}
+\item{sym}{One of \code{c("sym", "moderate", "extreme", "moderate-alt",
+"extreme-alt")}. By default (\code{sym}), the data is divided into equally
+distanced cut-off points between -2.5 and 2.5. In \code{moderate}
+assymmetry, cut-offs are chosen so that the peak of a normal distribution
+falls on the left-hand side. \code{extreme} assymmetry results in a
+distribution where the first category has the highest number of cases.
+'alt' versions of the distributions invert the cut-off points.}
 
-\item{dist}{}
+\item{dist}{Distribution of the data. One of \code{c("normal", "non-normal")}.}
 
-\item{seed}{}
-
-\item{...}{}
+\item{...}{For passing along additional parameters}
 }
 \value{
 
 }
 \description{
 Generate categorical data
+}
+\examples{
+getCatData()
 }
