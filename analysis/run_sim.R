@@ -1,20 +1,8 @@
-library(tidyverse)
-library(simsem)
 library(rhemtulla2012)
-#library(devtools)
-source("R/getModel.R")
-source("R/lavaan_model.R")
-source("R/getSims.R")
-source("R/gen_cat_data.R")
-source("R/catData.R")
-source("R/cfa_ML.R")
-source("R/run_rep.R")
-source("R/extract_par_est.R")
-
 
 # Compile Simulation Scenarios --------------------------------------------
 
-sim_scenarios <- getSims(its = 6,
+sim_scenarios <- getScenarios(its = 6,
                          N = c(100, 150, 350, 600),
                          cat = c(2, 3, 4, 5, 6, 7),
                          sym = c("sym", "moderate", "extreme", "moderate-alt", "extreme-alt" ),
@@ -23,12 +11,26 @@ sim_scenarios <- getSims(its = 6,
                          conditions = NULL)
 sim_scenarios_id <- cbind(id = 1:nrow(sim_scenarios), sim_scenarios)
 
-saveRDS(object = sim_scenarios_id,
-        file = "sim_scenarios_id.rds")
-
 
 # Generate data -----------------------------------------------------------
 set.seed(8361)
+simreps <- 1:1000 %>% map(~{rhemtulla2012:::getSimData(run_id = .x, 
+                                                       sim_scenarios = sim_scenarios_id)})
+
+# Fit models
+fitML <- function(datalist){datalist %>% 
+                map_df(~{.x$sim_data %>% 
+                                dplyr::select(id, models, cat_data) %>%  
+                                pmap_dfr(.f = function(id, models, cat_data){posscfa_ML(run_id = .x$run_id, 
+                                                                                        id = id, 
+                                                                                        models = models, 
+                                                                                        cat_data = cat_data)})})
+}
+
+set.seed(5731)
+simfitML <- fitML(simreps)
+
+
 sim_reps50 <- 1:50 %>% map(~{rhemtulla2012:::getSimData(run_id = .x, 
                                        sim_scenarios = sim_scenarios_id)})
 saveRDS(object = sim_reps50,
