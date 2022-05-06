@@ -4,7 +4,7 @@
 \alias{getCatData}
 \title{Generate categorical data}
 \usage{
-getCatData(models, N, cat, sym, dist, ...)
+getCatData(models, N, cat, sym, dist, seed = 42, ...)
 }
 \arguments{
 \item{models}{model file}
@@ -23,10 +23,9 @@ distribution where the first category has the highest number of cases.
 
 \item{dist}{Distribution of the data. One of \code{c("normal", "non-normal")}.}
 
-\item{...}{For passing along additional parameters}
-}
-\value{
+\item{seed}{Random seed to generate data with}
 
+\item{...}{For passing along additional parameters}
 }
 \description{
 Generate categorical data

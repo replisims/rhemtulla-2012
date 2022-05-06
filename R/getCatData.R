@@ -11,13 +11,13 @@
 #'   distribution where the first category has the highest number of cases.
 #'   'alt' versions of the distributions invert the cut-off points.
 #' @param dist Distribution of the data. One of \code{c("normal", "non-normal")}.
+#' @param seed Random seed to generate data with
 #' @param ... For passing along additional parameters
 #'
-#' @return
 #' @export
 #'
 #' @examples getCatData()
-getCatData <- function(models, N, cat, sym, dist, ...){
+getCatData <- function(models, N, cat, sym, dist, seed = 42, ...){
   variance <- 0
   pos_def <- TRUE
   
@@ -44,6 +44,7 @@ getCatData <- function(models, N, cat, sym, dist, ...){
     summarize_all(.funs = var) %>% 
     t %>% min
   
+  seed <- seed + 1
   }
   
   cat_data

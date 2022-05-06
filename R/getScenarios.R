@@ -1,7 +1,7 @@
 #' Simulate model outcomes under various conditions
 #'
-#' This function simulates the outcomes of each condition under each supplied
-#' model.
+#' This function generates a \code{data.frame} object containing all scenarios
+#' to simulate.
 #'
 #' @param its           Number of iterations to simulate for.
 #' @param N             Vector of integers representing the number of cases for
@@ -19,8 +19,7 @@
 #' @param conditions    Tibble file containing all conditions for which a user
 #'   wants to simulate. Bypasses the parameters \code{N}, \code{cat},
 #'   \code{sym}, \code{models} and \code{dist}.
-#' @export
-getSims <- function(its = 100, 
+getScenarios <- function(its = 100, 
                     N = 100,
                     cat = 5,
                     sym = "sym",

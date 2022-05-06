@@ -1,5 +1,6 @@
 library(tidyverse)
 library(simsem)
+library(rhemtulla2012)
 #library(devtools)
 source("R/getModel.R")
 source("R/lavaan_model.R")
@@ -28,7 +29,7 @@ saveRDS(object = sim_scenarios_id,
 
 # Generate data -----------------------------------------------------------
 set.seed(8361)
-sim_reps50 <- 1:50 %>% map(~{run_rep(run_id = .x, 
+sim_reps50 <- 1:50 %>% map(~{rhemtulla2012:::getSimData(run_id = .x, 
                                        sim_scenarios = sim_scenarios_id)})
 saveRDS(object = sim_reps50,
         file = "sim_reps50.rds")
