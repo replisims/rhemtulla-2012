@@ -4,9 +4,9 @@
 #' 
 #' @param run_id unique identifier for each run
 #' @param id unique identifier for each specified model
-#' @param models model file
+#' @param models string indicating model object "model1" or "model2"
 #' @param cat_data categorical data set
-cfa_ML <- function(run_id, id, models, cat_data){
+cfa_ML <- function(run_id, id, models, cat_data, ...){
   # Fit model with ML estimator
   lav_fit <- lavaan::cfa(model = get(models),
                          data = cat_data,
