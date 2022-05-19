@@ -1,6 +1,7 @@
+
 # Bias --------------------------------------------------------------------
 
-ggplot(sim_reps_agg %>% filter(dist == "normal")) +
+ggplot(sim_fit_all_unnest %>% dplyr::filter(dist == "normal")) +
   aes(x = cat, y = avg_bias, color = factor(N)) +
   geom_point(shape = "circle", size = 1.5) +
   geom_line() +

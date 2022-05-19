@@ -26,6 +26,12 @@ model2 <- "f1 =~ b1 * y1 + b2 * y2 + b3 * y3 + b4 * y4 + b5 * y5 + b6 * y6 + b7 
            f2 ~~ 1 * f2"
 save(model2, file = "data/model2.rda")
 
+
+# Model 3 -----------------------------------------------------------------
+
+model3 <- "f1 =~ b1 * y1 + b2 * y2 + b3 * y3 + b4 * y4 + b5 * y5 + b6 * y6 + b7 * y7 + b8 * y8 + b9 * y9 + b10 * y10"
+save(model3, file = "data/model3.rda")
+
 # Define model 1 ----------------------------------------------------------
 loadings <- matrix(0, 10, 2)
 loadings[1:5, 1] <- NA

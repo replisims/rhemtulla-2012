@@ -3,14 +3,14 @@
 #' Internal function to extract parameters of interest from a fitted model.
 #' 
 #' @param modfit a fitted model object
-getEstimates <- function(modfit){
+getEstimates <- function(modfit, f = 2){
   load <- lavInspect(object = modfit, 
                      what = "std")$lambda %>% 
     as_tibble %>% 
     rownames_to_column(var = "label") %>% 
     rowwise() %>% 
     transmute(label = paste0("b", label),
-              est = sum(f1, f2))
+              est = ifelse(f==2, sum(f1, f2), f1))
   
   s1 <- tibble(label = "s1",
                est = lavInspect(object = modfit, 

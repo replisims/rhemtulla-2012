@@ -1,43 +1,28 @@
 sim_scenarios_id <- readRDS("sim_scenarios_id.rds")
 
-sim_fitML50 <- readRDS("sim_fitML50.rds")
-sim_fitML100 <- readRDS("sim_fitML100.rds")
-sim_fitML150 <- readRDS("sim_fitML150.rds")
-sim_fitML200 <- readRDS("sim_fitML200.rds")
-sim_fitML250 <- readRDS("sim_fitML250.rds")
-sim_fitML300 <- readRDS("sim_fitML300.rds")
-
-
-sim_fitULS50 <- readRDS("sim_fitULS50.rds")
-sim_fitULS100 <- readRDS("sim_fitULS100.rds")
-sim_fitULS150 <- readRDS("sim_fitULS150.rds")
-sim_fitULS200 <- readRDS("sim_fitULS200.rds")
-sim_fitULS250 <- readRDS("sim_fitULS250.rds")
-sim_fitULS300 <- readRDS("sim_fitULS300.rds")
 
 # Collect outcomes --------------------------------------------------------
 
-sim_fitML <- list(sim_fitML50, sim_fitML100, sim_fitML150,
-                  sim_fitML200, sim_fitML250, sim_fitML300)
-
-sim_fitULS <- list(sim_fitULS50, sim_fitULS100, sim_fitULS150,
-                   sim_fitULS200, sim_fitULS250, sim_fitULS300)
-
-sim_fit_ML <- do.call(bind_rows, sim_fitML)
-sim_fit_ML <- tibble(estimator = "ML", sim_fit_ML)
-
-sim_fit_ULS <- do.call(bind_rows, sim_fitULS)
-sim_fit_ULS <- tibble(estimator = "ULS", sim_fit_ULS)
-
-sim_fit_all <- bind_rows(sim_fit_ML, sim_fit_ULS)
-
-
-sim_fit_all_joined <- sim_fit_all %>% 
-  ungroup %>% 
+simfitML <- simfitML %>% 
   left_join(sim_scenarios_id, 
             by = c("scenario_id" = "id"))
 
-saveRDS(sim_fit_all_joined, "sim_fit_all_joined.rds")
+simfitML <- tibble(estimator = "ML", simfitML)
+
+sim_fitULS50 <- sim_fitULS50 %>% 
+  left_join(sim_scenarios_id, 
+            by = c("scenario_id" = "id"))
+
+sim_fitULS50 <- tibble(estimator = "ULS", sim_fitULS50)
+
+simfitALL <- bind_rows(simfitML, sim_fitULS50)
+
+# sim_fit_all_joined <- sim_fit_all %>% 
+#   ungroup %>% 
+#   left_join(sim_scenarios_id, 
+#             by = c("scenario_id" = "id"))
+
+# saveRDS(sim_fit_all_joined, "sim_fit_all_joined.rds")
 
 # Parameter estimates -----------------------------------------------------
 lambda_03 <- c('b1', 'b6', 'b11', 'b16') 
@@ -47,7 +32,7 @@ lambda_06 <- c('b4', 'b9', "b14", "b19")
 lambda_07 <- c("b5", "b10", "b15", "b20")
 
 
-sim_fit_all_unnest <- sim_fit_all_joined %>% 
+sim_fit_all_unnest <- simfitALL %>% 
   dplyr::filter(converged == TRUE) %>% 
   dplyr::filter(post_check == TRUE) %>% 
   dplyr::select(-c(test, converged, post_check)) %>%  
