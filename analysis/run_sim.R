@@ -1,4 +1,5 @@
 library(rhemtulla2012)
+library(tidyverse)
 
 # Compile Simulation Scenarios --------------------------------------------
 
@@ -26,9 +27,30 @@ fitML <- function(datalist){datalist %>%
                                                                                         models = models, 
                                                                                         cat_data = cat_data)})})
 }
+fitULS <- function(datalist){datalist %>% 
+                map_df(~{.x$sim_data %>% 
+                                dplyr::select(id, models, cat_data) %>%  
+                                pmap_df(.f = function(id, models, cat_data){rhemtulla2012:::posscfa_ULS(run_id = .x$run_id, 
+                                                                                        id = id, 
+                                                                                        models = models, 
+                                                                                        cat_data = cat_data)})})
+}
 
 set.seed(5731)
 simfitML <- fitML(simreps)
+
+saveRDS(object = simfitML,
+        file = "simfitML.rds")
+
+
+set.seed(6102)
+simfitULS <- fitULS(simreps)
+
+saveRDS(object = simfitULS,
+        file = "simfitULS.rds")
+
+
+
 
 
 sim_reps50 <- 1:50 %>% map(~{rhemtulla2012:::getSimData(run_id = .x, 
