@@ -63,12 +63,12 @@ cfa_ULS <- function(run_id, id, models, cat_data){
   
   tibble(rep = run_id,
          scenario_id = id,
-         converged = lavInspect(object = lav_fit, 
+         converged = lavaan::lavInspect(object = lav_fit, 
                                 what = "converged"),
-         post_check = lavInspect(object = lav_fit, 
+         post_check = lavaan::lavInspect(object = lav_fit, 
                                  what = "post.check"),
          parameter_est = list(parameter_est),
-         test = list(lavInspect(object = lav_fit, 
+         test = list(lavaan::lavInspect(object = lav_fit, 
                                 what = "test")))
 } # end
 

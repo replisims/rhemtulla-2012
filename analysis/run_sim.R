@@ -3,7 +3,7 @@ library(tidyverse)
 
 # Compile Simulation Scenarios --------------------------------------------
 
-sim_scenarios <- getScenarios(its = 6,
+sim_scenarios <- rhemtulla2012:::getScenarios(its = 6,
                          N = c(100, 150, 350, 600),
                          cat = c(2, 3, 4, 5, 6, 7),
                          sym = c("sym", "moderate", "extreme", "moderate-alt", "extreme-alt" ),
@@ -30,7 +30,7 @@ fitML <- function(datalist){datalist %>%
 fitULS <- function(datalist){datalist %>% 
                 map_df(~{.x$sim_data %>% 
                                 dplyr::select(id, models, cat_data) %>%  
-                                pmap_df(.f = function(id, models, cat_data){rhemtulla2012:::posscfa_ULS(run_id = .x$run_id, 
+                                pmap_dfr(.f = function(id, models, cat_data){rhemtulla2012:::posscfa_ULS(run_id = .x$run_id, 
                                                                                         id = id, 
                                                                                         models = models, 
                                                                                         cat_data = cat_data)})})
@@ -51,6 +51,9 @@ saveRDS(object = simfitULS,
 
 
 
+m
+
+# Arjan didn't run the stuff after this -----------------------------------
 
 
 sim_reps50 <- 1:50 %>% map(~{rhemtulla2012:::getSimData(run_id = .x, 

@@ -4,7 +4,7 @@
 \alias{getEstimates}
 \title{Extract relevant parameters from a fitted Lavaan model.}
 \usage{
-getEstimates(modfit)
+getEstimates(modfit, f = 2)
 }
 \arguments{
 \item{modfit}{a fitted model object}
