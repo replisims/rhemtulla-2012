@@ -5,5 +5,5 @@
 #' @importFrom simsem      bind binds bindDist model generate
 #' @importFrom stats       sd
 #' @importFrom purrr       possibly
-#' @importFrom lavaan     inspectSampleCov
+#' @importFrom lavaan     inspectSampleCov lavInspect
 NULL

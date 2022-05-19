@@ -4,14 +4,14 @@
 \alias{cfa_ML}
 \title{Run the ML models}
 \usage{
-cfa_ML(run_id, id, models, cat_data)
+cfa_ML(run_id, id, models, cat_data, ...)
 }
 \arguments{
 \item{run_id}{unique identifier for each run}
 
 \item{id}{unique identifier for each specified model}
 
-\item{models}{model file}
+\item{models}{string indicating model object "model1" or "model2"}
 
 \item{cat_data}{categorical data set}
 }

@@ -16,6 +16,8 @@ sim_fitULS50 <- sim_fitULS50 %>%
 sim_fitULS50 <- tibble(estimator = "ULS", sim_fitULS50)
 
 simfitALL <- bind_rows(simfitML, sim_fitULS50)
+saveRDS(simfitALL, "simfitALL.rds")
+
 
 # sim_fit_all_joined <- sim_fit_all %>% 
 #   ungroup %>% 
@@ -42,17 +44,17 @@ sim_fit_all_unnest <- simfitALL %>%
 saveRDS(sim_fit_all_unnest, "sim_fit_all_unnest.rds")
 
 
-sim_fit_all_unnest_alt <- sim_fit_all_joined %>% 
-  ungroup() %>% 
-  group_by(scenario_id, rep) %>% 
-  mutate(exclude = (any(!converged) | any(!post_check))) %>% 
-  filter(exclude == FALSE) %>% 
-  dplyr::select(-c(test, converged, post_check, exclude)) %>%  
-  group_by(estimator, rep, scenario_id) %>% 
-  unnest(cols = parameter_est)
-  
-  
-saveRDS(sim_fit_all_unnest_alt, "sim_fit_all_unnest_alt.rds")
+# sim_fit_all_unnest_alt <- sim_fit_all_joined %>% 
+#   ungroup() %>% 
+#   group_by(scenario_id, rep) %>% 
+#   mutate(exclude = (any(!converged) | any(!post_check))) %>% 
+#   filter(exclude == FALSE) %>% 
+#   dplyr::select(-c(test, converged, post_check, exclude)) %>%  
+#   group_by(estimator, rep, scenario_id) %>% 
+#   unnest(cols = parameter_est)
+#   
+#   
+# saveRDS(sim_fit_all_unnest_alt, "sim_fit_all_unnest_alt.rds")
 
 
 sim_fit_all_unnest2 <- sim_fit_all_unnest %>% 
@@ -63,13 +65,13 @@ sim_fit_all_unnest2 <- sim_fit_all_unnest %>%
                               label %in% lambda_07 ~ "l07",
                               label == "s1" ~ "s1"))
 
-sim_fit_all_unnest2_alt <- sim_fit_all_unnest_alt %>% 
-  mutate(par_type = case_when(label %in% lambda_03 ~ "l03",
-                              label %in% lambda_04 ~ "l04",
-                              label %in% lambda_05 ~ "l05",
-                              label %in% lambda_06 ~ "l06",
-                              label %in% lambda_07 ~ "l07",
-                              label == "s1" ~ "s1"))
+# sim_fit_all_unnest2_alt <- sim_fit_all_unnest_alt %>% 
+#   mutate(par_type = case_when(label %in% lambda_03 ~ "l03",
+#                               label %in% lambda_04 ~ "l04",
+#                               label %in% lambda_05 ~ "l05",
+#                               label %in% lambda_06 ~ "l06",
+#                               label %in% lambda_07 ~ "l07",
+#                               label == "s1" ~ "s1"))
 
 
 # Labels ------------------------------------------------------------------
@@ -334,8 +336,10 @@ fig_8 <- ggplot(fig_8_dat) +
 
 # Type I Error ------------------------------------------------------------
 
+simfitALL <- readRDS("simfitALL.rds")
+
 # Figure 9 ----------------------------------------------------------------
-sim_fit_all_test <- sim_fit_all_joined %>% 
+sim_fit_all_test <- simfitALL %>% 
   ungroup %>%
   dplyr::filter(converged) %>% 
   dplyr::filter(post_check) %>% 
