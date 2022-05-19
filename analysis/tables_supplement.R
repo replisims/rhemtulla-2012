@@ -4,8 +4,8 @@
 
 # A2/A3 Number of nonconverged cases per 1000 replications -------------------
 library(kableExtra)
-
-fig_a1_dat <- sim_fit_all_joined %>% 
+#!!!!!!!! ATTENTION NORMAL AND NON-NORMAL ARE SWITCHED AROUND
+fig_a1_dat <- simfitALL %>% 
   group_by(dist, models, sym, N, estimator, cat) %>% 
   summarize(non_convergence = sum(!converged))
 
@@ -59,14 +59,14 @@ kbl(fig_a1_dat_wide %>% ungroup(),
 
 # A4/A5 Number of improper solutions per 1000 replications ----------------
 
-fig_a4_dat <- sim_fit_all_joined %>% 
+fig_a4_dat <- simfitALL %>% 
   group_by(dist, models, sym, N, estimator, cat) %>% 
-  summarize(non_convergence = sum(!post_check))
+  summarize(improper = sum(!post_check))
 
 
 fig_a4_dat_wide <- fig_a4_dat %>% 
   pivot_wider(names_from = c(sym, N, estimator),
-              values_from = c(non_convergence)) %>% 
+              values_from = c(improper)) %>% 
   mutate(dist = factor(dist, levels = c("normal", "non-normal")))
 
 
