@@ -7,7 +7,7 @@ power_scenarios <- sim_scenarios_id %>%
 
 # Generate data -----------------------------------------------------------
 set.seed(8361)
-sim_reps50 <- readRDS("sim_reps50.rds")
+sim_reps <- readRDS("simreps.rds")
 
 
 runPowerML <- function(datalist){datalist %>% 
@@ -16,18 +16,24 @@ runPowerML <- function(datalist){datalist %>%
                       dist == "normal",
                       sym == "sym") %>% 
         dplyr::select(id, cat_data) %>%  
-        pmap(.f = function(id, cat_data){
-          fit <- lavaan::cfa(model = get("model3"),
-                             data = cat_data,
-                             std.lv = TRUE, 
-                             orthogonal = FALSE,
-                             estimator = "MLMV")
-          pvalue <- fitmeasures(fit)["pvalue.scaled"]
-          
-          tibble(id = id,
-                 est = "ML",
-                 sig = pvalue < 0.05)})})
+        pmap(possPowerML)})
 }
+
+PowerML <-  function(id, cat_data){
+  fit <- lavaan::cfa(model = get("model3"),
+                     data = cat_data,
+                     std.lv = TRUE, 
+                     orthogonal = FALSE,
+                     estimator = "MLMV")
+  pvalue <- fitmeasures(fit)["pvalue.scaled"]
+  
+  tibble(id = id,
+         est = "ML",
+         sig = pvalue < 0.05)}
+
+possPowerML <- possibly(.f = PowerML,
+                        otherwise = NULL)
+
 
 runPowerULS <- function(datalist){datalist %>% 
     map_df(~{.x$sim_data %>% 
@@ -35,25 +41,34 @@ runPowerULS <- function(datalist){datalist %>%
                       dist == "normal",
                       sym == "sym") %>% 
         dplyr::select(id, cat_data) %>%  
-        pmap(.f = function(id, cat_data){
-          fit <- lavaan::cfa(model = get("model3"),
-                             data = cat_data,
-                             std.lv = TRUE, 
-                             orthogonal = FALSE,
-                             estimator = "ULSMV",
-                             ordered = TRUE)
-          pvalue <- fitmeasures(fit)["pvalue.scaled"]
-          
-          tibble(id = id,
-                 est = "cat-LS",
-                 sig = pvalue < 0.05)})})
+        pmap(possPowerULS)})
 }
 
+PowerULS <- function(id, cat_data){
+  fit <- lavaan::cfa(model = get("model3"),
+                     data = cat_data,
+                     std.lv = TRUE, 
+                     orthogonal = FALSE,
+                     estimator = "ULSMV",
+                     ordered = TRUE)
+  pvalue <- fitmeasures(fit)["pvalue.scaled"]
+  
+  tibble(id = id,
+         est = "cat-LS",
+         sig = pvalue < 0.05)}
+
+possPowerULS <- possibly(.f = PowerULS,
+                        otherwise = NULL)
 
 
-sim_powerML <- runPowerML(sim_reps50)
-sim_powerULS <- runPowerULS(sim_reps50)
 
+
+sim_powerML <- runPowerML(sim_reps)
+
+saveRDS(sim_powerML, "sim_powerML.rds")
+
+sim_powerULS <- runPowerULS(sim_reps)
+saveRDS(sim_powerULS, "sim_powerULS.rds")
 
 powerML <- sim_powerML %>% 
   group_by(id) %>% 
@@ -90,7 +105,7 @@ powerdf_wide <- powerdf %>%
   pivot_wider(names_from = c(est, cat),
               values_from = c(power))
 
-kbl(powerdf_wide,
+kbl(powerdf_wide %>% round(digits = 3),
     col.names = c("N", rep(c("ML", "ULS"), 6))) %>%
   kable_classic() %>% 
   add_header_above(c(" " = 1, 
@@ -100,4 +115,4 @@ kbl(powerdf_wide,
                      "5 categories" = 2,
                      "6 categories" = 2,
                      "7 categories" = 2)) %>% 
-  footnote(general = "Add correct note here.")# %>% landscape()
+  footnote(general = "Type I error was assessed by fitting a one-factor model to two-factor simulated data. ML = robust continuous maximum likelihood estimation; ULS = robust categorical least squares estimation.")# %>% landscape()

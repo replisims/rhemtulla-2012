@@ -1,6 +1,7 @@
 
 # Tables supplements ------------------------------------------------------
 
+sim_fit_cov <- readRDS("sim_fit_cov.rds")
 
 # A2/A3 Number of nonconverged cases per 1000 replications -------------------
 library(kableExtra)
@@ -16,7 +17,7 @@ fig_a1_dat_wide <- fig_a1_dat %>%
   mutate(dist = factor(dist, levels = c("normal", "non-normal")))
 
 
-fig_a1_dat_wide$dist <-  c("normal", rep(" ", 11), "non-normal", rep(" ", 11))
+#fig_a1_dat_wide$dist <-  c("normal", rep(" ", 11), "non-normal", rep(" ", 11))
 fig_a1_dat_wide$models <-  c("1", rep(" ", 5), "2", rep(" ", 5),"1", rep(" ", 5), "2", rep(" ", 5))
 
 kbl(fig_a1_dat_wide %>% ungroup(),
@@ -70,7 +71,7 @@ fig_a4_dat_wide <- fig_a4_dat %>%
   mutate(dist = factor(dist, levels = c("normal", "non-normal")))
 
 
-fig_a4_dat_wide$dist <-  c("normal", rep(" ", 11), "non-normal", rep(" ", 11))
+#fig_a4_dat_wide$dist <-  c("normal", rep(" ", 11), "non-normal", rep(" ", 11))
 fig_a4_dat_wide$models <-  c("1", rep(" ", 5), "2", rep(" ", 5),"1", rep(" ", 5), "2", rep(" ", 5))
 
 kbl(fig_a4_dat_wide %>% ungroup(),

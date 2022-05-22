@@ -1,30 +1,6 @@
 sim_scenarios_id <- readRDS("sim_scenarios_id.rds")
 
-
-# Collect outcomes --------------------------------------------------------
-
-simfitML <- simfitML %>% 
-  left_join(sim_scenarios_id, 
-            by = c("scenario_id" = "id"))
-
-simfitML <- tibble(estimator = "ML", simfitML)
-
-sim_fitULS50 <- sim_fitULS50 %>% 
-  left_join(sim_scenarios_id, 
-            by = c("scenario_id" = "id"))
-
-sim_fitULS50 <- tibble(estimator = "ULS", sim_fitULS50)
-
-simfitALL <- bind_rows(simfitML, sim_fitULS50)
-saveRDS(simfitALL, "simfitALL.rds")
-
-
-# sim_fit_all_joined <- sim_fit_all %>% 
-#   ungroup %>% 
-#   left_join(sim_scenarios_id, 
-#             by = c("scenario_id" = "id"))
-
-# saveRDS(sim_fit_all_joined, "sim_fit_all_joined.rds")
+simfitALL <- readRDS("./results/simfitALL.rds")
 
 # Parameter estimates -----------------------------------------------------
 lambda_03 <- c('b1', 'b6', 'b11', 'b16') 
@@ -123,6 +99,13 @@ fig_3 <- ggplot(fig_3_dat) +
         axis.title = element_text(size = 10),
         legend.title = element_blank())
 
+# Save plot
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_3.png",
+       plot = fig_3,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
 
 
 # Figure 4 ----------------------------------------------------------------
@@ -163,7 +146,12 @@ fig_4 <- ggplot(fig_4_dat) +
         axis.title = element_text(size = 10),
         legend.title = element_blank())
 
-
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_4.png",
+       plot = fig_4,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
 
 # Figure 5 ----------------------------------------------------------------
 
@@ -187,7 +175,7 @@ fig_5 <- ggplot(fig_5_dat) +
   geom_line() +
   scale_x_continuous(name = "Number of Categories") +
   scale_y_continuous(name = "Average Estimated Parameter Value",
-                     breaks = c(0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55)) +
+                     breaks = c(0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55)) +
   scale_color_manual(values = c("grey70", "black")) +
   scale_linetype_manual(values = c("dashed", "solid"),
                         labels = c("N = 100", "N = 600")) +
@@ -199,6 +187,13 @@ fig_5 <- ggplot(fig_5_dat) +
         strip.background = element_blank(),
         axis.title = element_text(size = 10),
         legend.title = element_blank())
+
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_5.png",
+       plot = fig_5,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
 
 # Coverage ----------------------------------------------------------------
 
@@ -213,7 +208,7 @@ sim_fit_cov <- sim_fit_all_unnest2 %>%
                               par_type == "s1" ~ 0.3)) %>% 
   mutate(covered = (true_par > (est - 1.96 * se)) & (true_par < (est + 1.96 * se)))
 
-
+saveRDS(sim_fit_cov, "sim_fit_cov.rds")
 
 # Figure 6 ----------------------------------------------------------------
 
@@ -255,7 +250,12 @@ fig_6 <- ggplot(fig_6_dat) +
         legend.title = element_blank())
 
 
-
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_6.png",
+       plot = fig_6,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
 
 # Figure 7 ----------------------------------------------------------------
 
@@ -295,7 +295,12 @@ fig_7 <- ggplot(fig_7_dat) +
         axis.title = element_text(size = 10),
         legend.title = element_blank())
 
-
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_7.png",
+       plot = fig_7,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
 
 # Figure 8 ----------------------------------------------------------------
 
@@ -319,7 +324,7 @@ fig_8 <- ggplot(fig_8_dat) +
   geom_line() +
   scale_x_continuous(name = "Number of Categories") +
   scale_y_continuous(name = "95% Confidence Interval Coverage",
-                     breaks = c(0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)) +
+                     breaks = c(0.2, 0.3,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)) +
   scale_color_manual(values = c("grey70", "black")) +
   scale_shape_manual(values = c(16, 17),
                      labels = c("lambda = 0.3", "lambda = 0.7")) +
@@ -334,9 +339,16 @@ fig_8 <- ggplot(fig_8_dat) +
         axis.title = element_text(size = 10),
         legend.title = element_blank())
 
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_8.png",
+       plot = fig_8,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
+
 # Type I Error ------------------------------------------------------------
 
-simfitALL <- readRDS("simfitALL.rds")
+simfitALL <- readRDS("./results/simfitALL.rds")
 
 # Figure 9 ----------------------------------------------------------------
 sim_fit_all_test <- simfitALL %>% 
@@ -384,7 +396,12 @@ fig_9 <- ggplot(fig_9_dat) +
         legend.title = element_blank())
   
 
-
+ggsave("./analysis/Replication Report Rhemthulla et al 2012/figures/fig_9.png",
+       plot = fig_9,
+       device = "png",
+       scale = 1,
+       dpi = 300,
+       limitsize = TRUE)
 
 
 
