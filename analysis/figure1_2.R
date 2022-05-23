@@ -1,13 +1,4 @@
 
-library(tidyverse)
-library(simsem)
-source("R/getSims.R")
-source("R/getModel.R")
-source("R/gen_cat_data.R")
-source("R/lavaan_model.R")
-source("R/run_rep.R")
-source("R/catData.R")
-
 # Compile Scenarios for Fig 1 & 2--------------------------------------------
 
 scenarios_fig12 <- getSims(its = 6,

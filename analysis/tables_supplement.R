@@ -123,7 +123,7 @@ fig_a6_dat <- sim_fit_cov %>%
   group_by(estimator, rep, scenario_id, label) %>% 
   mutate(bias = mean(est, na.rm = TRUE) - true_par) %>% 
   group_by(par_type, sym, N, estimator, cat) %>% 
-  summarize(bias = mean(bias, na.rm = TRUE))
+  summarize(bias = mean(bias, na.rm = TRUE) %>% round(digits = 3))
   
 
 fig_a6_dat_wide <- fig_a6_dat %>% 
@@ -183,7 +183,7 @@ fig_a7_dat <- sim_fit_cov %>%
   group_by(estimator, rep, scenario_id, label) %>% 
   mutate(bias = mean(est, na.rm = TRUE) - true_par) %>% 
   group_by(par_type, sym, N, estimator, cat) %>% 
-  summarize(bias = mean(bias, na.rm = TRUE))
+  summarize(bias = mean(bias, na.rm = TRUE) %>% round(digits = 3))
 
 
 fig_a7_dat_wide <- fig_a7_dat %>% 
@@ -243,7 +243,7 @@ fig_a8_dat <- sim_fit_cov %>%
   group_by(estimator, rep, scenario_id, label) %>% 
   mutate(bias = mean(est, na.rm = TRUE) - true_par) %>% 
   group_by(par_type, sym, N, estimator, cat) %>% 
-  summarize(bias = mean(bias, na.rm = TRUE))
+  summarize(bias = mean(bias, na.rm = TRUE) %>% round(digits = 3))
 
 
 fig_a8_dat_wide <- fig_a8_dat %>% 

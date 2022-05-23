@@ -1,11 +1,11 @@
 \documentclass[10,a4paperpaper,]{article}
 
-  \title{Replication Report}
+  \title{Replication Report Rhemtulla et al 2012}
   \author{Anna Lohmann\textsuperscript{1}, \and Arjan Huizing
 \textsuperscript{2}}
   \date{%
 		\textsuperscript{1} Leiden University Medical Center\\%
-		\textsuperscript{2} University of some other place~\\[2ex]
+		\textsuperscript{2} TNO~\\[2ex]
 		\today
    }
   
@@ -37,14 +37,28 @@
 
 \subsection*{Abstract}
 
-\texttt{\textless{}a\ summary\ of\ the\ replication\ effort\textgreater{}}
-\vskip 2em
+This replication report documents the replication attempt of the
+simulation study reported in Rhemtulla, M., Brosseau-Liard, P. É., \&
+Savalei, V. (2012). When can categorical variables be treated as
+continuous? A comparison of robust continuous and categorical SEM
+estimation methods under suboptimal conditions. \emph{Psychological
+Methods}, 17(3), 354--373. \url{https://doi.org/10.1037/a0029315}. The
+study compared two different estimation methods (robust Maximum
+Likelihood (ML) and categorical least squares (cat-LS/ULSMV)) for
+fitting confirmatory factor analysis models in the context of
+categorical variables. Our replication included writing simulation code
+based on the information provided in the manuscript and the
+corresponding supplemental material. Information provided in the
+original study was detailed and well structured thus allowing us to
+reimplement the study to the best of our knowledge. Detailed result
+tables provided in the supplemental material allowed us to compare our
+replicated results to the original results. \vskip 2em
 
 \noindent\makebox[\textwidth]{\large Correspondence concerning this replication report should be addressed to:}
 
 \par
 
-\noindent\makebox[\textwidth]{\large primary\_a.l.lohmann@lumc.nl}
+\noindent\makebox[\textwidth]{\large a.l.lohmann@lumc.nl}
 
 \par
 
@@ -53,10 +67,12 @@
 \section{Introduction}
 
 This replication report documents the replication attempt of the
-simulation study Rhemtulla, M., Brosseau-Liard, P. É., \& Savalei, V.
-(2012). When can categorical variables be treated as continuous? A
-comparison of robust continuous and categorical SEM estimation methods
-under suboptimal conditions. Psychological Methods, 17(3), 354--373.
+simulation study
+
+Rhemtulla, M., Brosseau-Liard, P. É., \& Savalei, V. (2012). When can
+categorical variables be treated as continuous? A comparison of robust
+continuous and categorical SEM estimation methods under suboptimal
+conditions. \emph{Psychological Methods}, 17(3), 354--373.
 \url{https://doi.org/10.1037/a0029315}
 
 Following the definition of Rougier et al. (2017) we understand the
@@ -79,13 +95,13 @@ result tables was freely available.
 \subsection{Data Generating Mechanism}
 
 Information provided in the above mentioned sources indicated that the
-following simulation factors were systematically varied in a full
-factorial design for generating the artificial data.
+following simulation factors were systematically varied in a
+full-factorial design for generating the artificial data.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.40}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.13}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.47}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4667}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Simulation factor
@@ -96,13 +112,16 @@ Levels
 \end{minipage} \\
 \midrule
 \endhead
-\emph{Fixed} & & \\
+\emph{Varied} & & \\
 CFA model size & 2 & 10 indicators, 20 indicators \\
 Underlying distribution & 2 & normal, non-normal \\
 Number of categories & 6 & 2,3,4,5,6,7 \\
 Threshold symmetry & 5 & symmetry, moderate asymmetry, moderate
 asymmetry alternative, extreme asymmetry \\
 Sample Size & 4 & 100, 150, 350, 600 \\
+\emph{Fixed} & & \\
+factor loadings & & 0.3, 0.4, 0.5, 0.6, 0.7 \\
+factor correlation & & 0.3 \\
 \bottomrule
 \end{longtable}
 
@@ -115,17 +134,29 @@ size. (2) The generated data was categorized based on the given category
 thresholds corresponding to a given number of categories and threshold
 symmetry.
 
+\subsubsection{CFA model}
+
+The CFA models underlying data generation where described as
+\emph{``Model 1 was a two-factor CFA model with five indicators per
+factor, for a total of 10 indicators. Factor loadings for the five
+indicators were .3, .4, .5, .6, .7. {[}\ldots{]} The model was
+identified by fixing the variances of each latent variable to 1.
+Generated continuous variables had unit variance (prior to
+categorization). Model 2 was identical to Model 1, but with 10
+indicators per factor.''} (p.359) We translated this information into
+the following matrices: \ldots{}
+
 \subsubsection{Underlying distribution, CFA model size and Sample Size}
 
-The original study indicated that ``{[}c{]}ontinous data (normal and
-nonnormal) were generated in EQS (Version 6.1; Bentler,2008) using
-methods developed by Fleishman (1978) and Vale Maurelli (1983).'' We
+The original study indicated that \emph{``{[}c{]}ontinous data (normal
+and nonnormal) were generated in EQS (Version 6.1; Bentler,2008) using
+methods developed by Fleishman (1978) and Vale Maurelli (1983).''} We
 emulated this approach using the \texttt{generate()} function from the
 \texttt{simsem} package with the parameter \texttt{inDist} set to
 \texttt{NULL} in the normal case and to
 \texttt{simsem::bindDist(skewness\ =\ 2,\ kurtosis\ =\ 7)} in the
 non-normal case. This function also to the CFA model (as matrix \ldots)
-as well as the sample size as input constituing the first step of the
+as well as the sample size as input constituting the first step of the
 data generation.
 
 \subsubsection{Number of categories and Threshold symmetry}
@@ -135,7 +166,14 @@ After data was generated based on the given CFA model and the underlying
 distribution the resulting data was categorized into the number of
 categories for the scenario at hand. For each number of categories and
 each threshold symmetry Z-scores for category thresholds could be
-obtained from the first table of the supplemental material.
+obtained from the first table of the supplemental material. The sample
+covariance matrix of the resulting categorized data was tested for
+positive definiteness. In case it was found to be non-positive definite
+data was resampled with a different seed until it was. Additionally, it
+was ensured that non of the generated variables had zero variance. These
+measures are not documented in the original study. Hence, we do not know
+whether or at which point in the simulation pipeline these issues were
+dealt with.
 
 \texttt{\textless{}You\ can\ add\ pseudocode\ or\ a\ flowchart\ to\ illustrate\ the\ data\ generation\ or\ the\ entire\ simulation\ design\textgreater{}}
 
@@ -177,11 +215,22 @@ variables. The underlying CFA model was fit using each of the two
 methods under investigation.
 \texttt{\textless{}Describe\ the\ methods\ that\ are\ investigated\ and\ how\ they\ are\ implemented\textgreater{}}
 
-\subsubsection{robust normal theory maximum likelihood (ML)}
+\subsubsection{Robust normal theory maximum likelihood (ML)}
+
+CFA's were carried out using the \texttt{cfa()} function of the
+\texttt{lavaan} package. For the \emph{Robust normal theory maximum
+likelihood} approach we set the \texttt{estimator} parameter to
+\texttt{MLVM}.
 
 \texttt{\textless{}Describe\ how\ the\ first\ method\ is\ defined\ and\ implemented.\ You\ can\ include\ equations\ and\ or\ R\ code.\ If\ applicable,\ mention\ specialized\ R\ packages,\ their\ version\ as\ well\ as,\ parameters\ of\ specific\ functions.\textgreater{}}
 
-\subsubsection{robust categorical least squares (ULS)}
+\subsubsection{Robust categorical least squares (ULS)}
+
+The \emph{Robust categorical least squares (ULS)} approach was also
+implemented using the \texttt{cfa()} function from the \texttt{lavaan}
+package. In this case the \texttt{estimator} parameter was set to
+\texttt{ULSMV}. Additionally, the \texttt{ordered} parameter was set to
+\texttt{TRUE}.
 
 \texttt{\textless{}Describe\ how\ the\ second\ method\ is\ defined\ and\ implemented.\ You\ can\ include\ equations\ and\ or\ R\ code.\ If\ applicable,\ mention\ specialized\ R\ packages,\ their\ version\ as\ well\ as,\ parameters\ of\ specific\ functions.\textgreater{}}
 
@@ -191,11 +240,28 @@ The two methods described above were compared on various performance
 measures.
 
 \subsubsection{Convergence Failures}
+
+The original article assess the numbr of convergence failures. We
+implemented convergernce failure via the \texttt{lavInspect()} function
+with the \texttt{what} parameter set to \texttt{"converged"}.
+
 \subsubsection{Improper solutions}
+
+Furthermore, the original study reports assessing the number of improper
+solutions. The paper defines improper solution as \emph{``when cat-LS
+estimation produced a factor loading greater than 1 or continuous ML
+estimation produced a standardized factor loading greater than 1''}
+(p.361)
+
+``post.check'': Post-fitting check if the solution is admissible. A
+warning is raised if negative variances are found, or if either
+lavInspect(fit,``cov.lv'') or lavInspect(fit,``theta'') return a
+non-positive definite matrix.
+
 \subsubsection{Outliers}
 
-The orinal study defined outliers as ``any cases that produced a
-standard error greater than 1.'' We implemented this as the robust
+The orinal study defined outliers as \emph{``any cases that produced a
+standard error greater than 1.''} We implemented this as the robust
 standard errors listed in the lavaan fit object.
 
 \subsubsection{Parameter Estimates}
@@ -205,6 +271,21 @@ standard errors listed in the lavaan fit object.
 \subsubsection{Coverage}
 \subsubsection{Type I error rate}
 \subsubsection{Outliers}
+\subsection{Power}
+
+In addition to the above mentioned analyses the study included a brief
+evaluation of the relative power of the ML-based and the ULS-based
+robust test statistics to detect a least major model misspecification.
+For this purpose the authors fit a \emph{``one-factor model to the data
+generated by Model 1 (the 10-indicator,two factor model) for the subset
+of conditions in which the underlying distribution was normal and
+thresholds were symmetrically distributed.''} (p.369). This subset
+corresponds to XZY of the abc scenarios. We interpreted the above to
+indicate that the same generated data as for the rest of the simulation
+study was used. We hence filtered the generated data sets to only retain
+the scenarios including model 1, normally distributed variables and
+symmetrically distributed thresholds for categorization and fit a
+one-factor model to each of the remaining data sets.
 
 \texttt{\textless{}Describe\ which\ performance\ measures\ are\ compared,\ if\ applicable\ mention\ specialized\ R\ packages,\ their\ versions,\ as\ well\ as\ parameter\ settings\ of\ functions.\textgreater{}}
 
@@ -236,9 +317,9 @@ recommendations. Wherever feasible multiple interpretations where
 implemented.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.36}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.36}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.27}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3636}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3636}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2727}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Issue
@@ -249,8 +330,8 @@ Justification
 \end{minipage} \\
 \midrule
 \endhead
-Data dependence & each scenario is implemented in independently
-generated data & Best practice (Burton et al. 2006) \\
+Factor loadings of Model 2 & each factor loading is assumed to occur
+twice & \\
 \bottomrule
 \end{longtable}
 
@@ -263,7 +344,7 @@ condition'' also included for each model size. We interpreted the text
 such that this was the case and hence collapsed the distributions across
 both model sizes.
 
-\subsection{Another issue}
+\subsection{Error handling}
 
 \texttt{\textless{}More\ details\ on\ how\ the\ information\ provided\ was\ insufficient,\ unclear\ or\ vague\textgreater{}}
 \emph{``Some weird quote from the original article that you could not
@@ -278,18 +359,77 @@ make any sense of''} (p.XY)
 The original study provides descriptives for the simulated data in two
 figures. Figure 1 and Figure 2 of the original manuscript
 
+\subsubsection{Figure 3 and 4 Parameter estimates (factor loadings)}
+
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig_3} \caption{Parameter estimates (factor loadings, underlying distribution is normal). Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper set of lines represents results for a true parameter value of .7. The lower set of lines represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry.}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig_4} \caption{Parameter estimates (factor loadings, underlying distribution is nonnormal; skew 2, kurtosis 7). Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper set of lines represents results for a true parameter value of .7. The lower set of lines represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry.}\label{fig:unnamed-chunk-3}
+\end{figure}
+
+\subsubsection{Figure 5 Parameter estimates (factor correlation)}
+
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig_5} \caption{Parameter estimates (factor correlation, true value is .3). Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry.}\label{fig:unnamed-chunk-4}
+\end{figure}
+
+\subsubsection{Figure 6 and 7 Coverage (factor loadings)}
+
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig_6} \caption{Coverage by number of categories (.7 and .3 factor loadings); underlying distribution is normal. Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel represents results for a true parameter value of .7. The lower panel represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry}\label{fig:unnamed-chunk-5}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig7} \caption{Coverage by number of categories (.7 and .3 factor loadings); underlying distribution is nonnormal (skew 2, kurtosis 7). Values are averaged across model size, and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel represents results for a true parameter value of .7. The lower panel represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry.}\label{fig:unnamed-chunk-6}
+\end{figure}
+
+\subsubsection{Figure 8 Coverage (factor correlations)}
+
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig_8} \caption{Coverage by number of categories (factor correlation). Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry.}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+\subsubsection{Type I error rate}
+\begin{figure}
+\includegraphics[width=445pt]{./figures/fig_9} \caption{Type I error of mean-and-variance adjusted test statistic by number of categories. Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry.}\label{fig:unnamed-chunk-8}
+\end{figure}
+
 \subsection{Replication of result tables}
 
 \texttt{\textless{}Compare\ any\ tabulated\ data\ to\ the\ original\textgreater{}}
-Table 1 presents the ``Skew and Kurtosis of Observed Categorical
-Variables by Threshold Distribution, Underlying Distribution, and Number
-of Categories'' (p.363). The ``{[}v{]}alues in this table were obtained
-by generating samples of size N = 1,000,000 for each condition and
-recording the skew and kurtosis of the observed distributions.'' (p.363)
-As discussed above we understood ``each condition'' to also refer to the
-model size. Our results are hence pooled across model size.
 
-\subsection{Replication of results presented in text form }
+\subsubsection{Table 1}
+
+Table 1 presents the \emph{``Skew and Kurtosis of Observed Categorical
+Variables by Threshold Distribution, Underlying Distribution, and Number
+of Categories''} (p.363). The \emph{``{[}v{]}alues in this table were
+obtained by generating samples of size N = 1,000,000 for each condition
+and recording the skew and kurtosis of the observed distributions.''}
+(p.363) As discussed above we understood ``each condition'' to only
+include underlying distribution, number of categories and threshold
+symmetry. We hence only simulated one variable of sample size 1,000,000
+per condition in order to replicate figure 1, figure 2 as well as table
+1.
+
+\subsubsection{Number of nonconverged cases per 1000 replications}
+
+\includegraphics[width=325pt]{./figures/tabA2_A3}
+
+\subsubsection{Number of improper solutions per 1000 replications}
+
+\includegraphics[width=325pt]{./figures/tabA4_A5}
+
+\subsubsection{Parameter Bias, Model1, Underlying Distribution = Normal}
+
+\includegraphics[width=325pt]{./figures/tabA6}
+
+\subsubsection{Parameter Bias, Model1, Underlying Distribution = Skew2, Kurtosis 7}
+
+\includegraphics[width=325pt]{./figures/tabA7}
+
+\subsection{Replication of results presented in text form}
 
 While the vast majority of results is presented in the form of figures,
 a few outcomes regarding outliers, relative bias of parameter estimates
@@ -309,10 +449,11 @@ Figures and tables report absolute bias. Results pertaining to relative
 bias are only summarized in a more qualitative manner in text form. ``As
 the number of categories increases, ML estimates gradually become less
 biased and by five categories relative bias is always less than
-10\%.(p.362)'' ``When the underlying distribution is non-normal, all
-cat-LS parameter estimates take on a slightly positive bias (around
-4\%), except when there are just two categories.'' (p.364) ``{[}B{]}ias
-is almost never greater that 5\% with either method.
+10\%.(p.362)'' \emph{``When the underlying distribution is non-normal,
+all cat-LS parameter estimates take on a slightly positive bias (around
+4\%), except when there are just two categories.''} (p.364)
+\emph{``{[}B{]}ias is almost never greater that 5\% with either
+method.''}
 
 \subsubsection{Relative bias for robust standard error estimates}
 
@@ -322,7 +463,7 @@ standard errors are from 3\% to 37\% (average 13\%) smaller than
 empirical standard errors when the sample size is small.'' ``Cat-LS
 produces better robust standard errors for factor loadings, and ML
 produces better robust standard errors for factor correlations. This
-finding isconsistent across number od categories.
+finding is consistent across number of categories.
 
 \FloatBarrier
 \section{Discussion}
@@ -463,12 +604,6 @@ Arjan Huizing:
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-burton_design_2006}{}}%
-Burton, Andrea, Douglas G. Altman, Patrick Royston, and Roger L. Holder.
-2006. {``The Design of Simulation Studies in Medical Statistics.''}
-\emph{Statistics in Medicine} 25 (24): 4279--92.
-\url{https://doi.org/10.1002/sim.2673}.
-
 \leavevmode\vadjust pre{\hypertarget{ref-rougier_sustainable_2017-1}{}}%
 Rougier, Nicolas P., Konrad Hinsen, Frédéric Alexandre, Thomas Arildsen,
 Lorena A. Barba, Fabien C. Y. Benureau, C. Titus Brown, et al. 2017.
@@ -497,6 +632,31 @@ research compendium which can be found in the following git repository
 \begin{verbatim}
 ## .
 ## +-- defs.tex
+## +-- figures
+## |   +-- fig3.png
+## |   +-- fig4.png
+## |   +-- fig5.png
+## |   +-- fig6.png
+## |   +-- fig7.png
+## |   +-- fig8
+## |   +-- fig9.png
+## |   +-- fig_3.png
+## |   +-- fig_4.png
+## |   +-- fig_5.png
+## |   +-- fig_6.png
+## |   +-- fig_8.png
+## |   +-- fig_9.png
+## |   +-- tabA2_A3.png
+## |   +-- tabA4_A5.png
+## |   +-- tabA6.png
+## |   +-- tabA7.png
+## |   +-- tableA10.html
+## |   +-- tableA2_A3.html
+## |   +-- tableA4_A5.html
+## |   +-- tableA6.html
+## |   +-- tableA7.html
+## |   +-- tableA8.html
+## |   \-- tableA9.html
 ## +-- flowchart.PNG
 ## +-- Lato-Black.ttf
 ## +-- Lato-BlackItalic.ttf
@@ -506,6 +666,7 @@ research compendium which can be found in the following git repository
 ## +-- Lato-Regular.ttf
 ## +-- references.bib
 ## +-- Replication Report Rhemthulla et al 2012.Rmd
+## +-- Replication Report Rhemthulla et al 2012.Rmd.bak
 ## +-- Replication-Report-Rhemthulla-et-al-2012.log
 ## +-- Replication-Report-Rhemthulla-et-al-2012.pdf
 ## +-- Replication-Report-Rhemthulla-et-al-2012.Rmd
@@ -530,7 +691,7 @@ research compendium which can be found in the following git repository
 
 \subsubsection*{Reproducibility Information}
 
-This report was last updated on 2022-03-05 15:03:17. The simulation
+This report was last updated on 2022-05-23 17:12:58. The simulation
 replication was conducted using the following computational environment
 and dependencies:
 
@@ -539,7 +700,7 @@ and dependencies:
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
+##  version  R version 4.1.3 (2022-03-10)
 ##  os       Windows 10 x64 (build 19043)
 ##  system   x86_64, mingw32
 ##  ui       RTerm
@@ -547,8 +708,8 @@ and dependencies:
 ##  collate  English_United States.1252
 ##  ctype    English_United States.1252
 ##  tz       Europe/Berlin
-##  date     2022-03-05
-##  pandoc   2.14.0.3 @ C:/Program Files/RStudio/bin/pandoc/ (via rmarkdown)
+##  date     2022-05-23
+##  pandoc   2.17.1.1 @ C:/Program Files/RStudio/bin/quarto/bin/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package        * version    date (UTC) lib source
@@ -556,21 +717,21 @@ and dependencies:
 ##  cachem           1.0.6      2021-08-19 [1] CRAN (R 4.1.2)
 ##  callr            3.7.0      2021-04-20 [1] CRAN (R 4.1.2)
 ##  cli              3.1.0      2021-10-27 [1] CRAN (R 4.1.2)
-##  crayon           1.4.2      2021-10-29 [1] CRAN (R 4.1.2)
+##  crayon           1.5.1      2022-03-26 [1] CRAN (R 4.1.3)
 ##  DBI              1.1.2      2021-12-20 [1] CRAN (R 4.1.2)
-##  desc             1.4.0      2021-09-28 [1] CRAN (R 4.1.2)
+##  desc             1.4.1      2022-03-06 [1] CRAN (R 4.1.3)
 ##  devtools         2.4.3      2021-11-30 [1] CRAN (R 4.1.2)
 ##  digest           0.6.29     2021-12-01 [1] CRAN (R 4.1.2)
 ##  dplyr          * 1.0.8      2022-02-08 [1] CRAN (R 4.1.2)
 ##  ellipsis         0.3.2      2021-04-29 [1] CRAN (R 4.1.2)
-##  evaluate         0.14       2019-05-28 [1] CRAN (R 4.1.2)
-##  fansi            1.0.2      2022-01-14 [1] CRAN (R 4.1.2)
+##  evaluate         0.15       2022-02-18 [1] CRAN (R 4.1.3)
+##  fansi            1.0.3      2022-03-24 [1] CRAN (R 4.1.3)
 ##  fastmap          1.1.0      2021-01-25 [1] CRAN (R 4.1.2)
 ##  fs               1.5.2      2021-12-08 [1] CRAN (R 4.1.2)
 ##  generics         0.1.2      2022-01-31 [1] CRAN (R 4.1.2)
 ##  glue             1.6.2      2022-02-24 [1] CRAN (R 4.1.2)
 ##  htmltools        0.5.2      2021-08-25 [1] CRAN (R 4.1.2)
-##  knitr          * 1.37       2021-12-16 [1] CRAN (R 4.1.2)
+##  knitr          * 1.38       2022-03-25 [1] CRAN (R 4.1.3)
 ##  lifecycle        1.0.1      2021-09-24 [1] CRAN (R 4.1.2)
 ##  magrittr         2.0.2      2022-01-26 [1] CRAN (R 4.1.2)
 ##  memoise          2.0.1      2021-11-26 [1] CRAN (R 4.1.2)
@@ -586,7 +747,7 @@ and dependencies:
 ##  remotes          2.4.2      2021-11-30 [1] CRAN (R 4.1.2)
 ##  RepliSimReport   0.0.0.9000 2022-02-03 [1] Github (replisims/RepliSimReport@5f14003)
 ##  rlang            1.0.1      2022-02-03 [1] CRAN (R 4.1.2)
-##  rmarkdown        2.11       2021-09-14 [1] CRAN (R 4.1.2)
+##  rmarkdown        2.13       2022-03-10 [1] CRAN (R 4.1.3)
 ##  rprojroot        2.0.2      2020-11-15 [1] CRAN (R 4.1.2)
 ##  rstudioapi       0.13       2020-11-12 [1] CRAN (R 4.1.2)
 ##  sessioninfo      1.2.2      2021-12-06 [1] CRAN (R 4.1.2)
@@ -594,17 +755,17 @@ and dependencies:
 ##  stringr          1.4.0      2019-02-10 [1] CRAN (R 4.1.2)
 ##  testthat         3.1.1      2021-12-03 [1] CRAN (R 4.1.2)
 ##  tibble           3.1.6      2021-11-07 [1] CRAN (R 4.1.2)
-##  tidyselect       1.1.1      2021-04-30 [1] CRAN (R 4.1.2)
+##  tidyselect       1.1.2      2022-02-21 [1] CRAN (R 4.1.3)
 ##  usethis          2.1.5      2021-12-09 [1] CRAN (R 4.1.2)
 ##  utf8             1.2.2      2021-07-24 [1] CRAN (R 4.1.2)
-##  vctrs            0.3.8      2021-04-29 [1] CRAN (R 4.1.2)
-##  withr            2.4.3      2021-11-30 [1] CRAN (R 4.1.2)
-##  xfun             0.29       2021-12-14 [1] CRAN (R 4.1.2)
+##  vctrs            0.3.8      2021-04-29 [1] CRAN (R 4.1.3)
+##  withr            2.5.0      2022-03-03 [1] CRAN (R 4.1.3)
+##  xfun             0.30       2022-03-02 [1] CRAN (R 4.1.3)
 ##  xtable         * 1.8-4      2019-04-21 [1] CRAN (R 4.1.2)
-##  yaml             2.2.1      2020-02-01 [1] CRAN (R 4.1.1)
+##  yaml             2.3.5      2022-02-21 [1] CRAN (R 4.1.2)
 ## 
 ##  [1] C:/Users/alohmann/Documents/R/win-library/4.1
-##  [2] C:/Program Files/R/R-4.1.2/library
+##  [2] C:/Program Files/R/R-4.1.3/library
 ## 
 ## ------------------------------------------------------------------------------
 \end{verbatim}
@@ -612,9 +773,9 @@ and dependencies:
 The current Git commit details are:
 
 \begin{verbatim}
-## Local:    test C:/Users/alohmann/Dropbox/anna/projects_new/replisims/replications/rhemtulla-2012
+## Local:    test C:/Users/alohmann/Dropbox (Personal)/anna/projects_new/replisims/replications/rhemtulla-2012
 ## Remote:   test @ origin (https://github.com/replisims/rhemtulla-2012.git)
-## Head:     [7b6ab82] 2022-02-28: A lot of stuff
+## Head:     [eda745b] 2022-05-23: Update report
 \end{verbatim}
 
 
