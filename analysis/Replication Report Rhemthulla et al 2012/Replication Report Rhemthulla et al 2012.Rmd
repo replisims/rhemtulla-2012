@@ -297,6 +297,12 @@ As discussed above we understood "each condition" to only include underlying dis
 We hence only simulated one variable of sample size 1,000,000 per condition in order to replicate
 figure 1, figure 2 as well as table 1.
 
+\subsubsection{Observed Power}
+```{r, out.width='325pt'}
+knitr::include_graphics("./figures/table2.png")
+```
+
+
 \subsubsection{Number of nonconverged cases per 1000 replications}
 
 ```{r, out.width='325pt'}
@@ -434,7 +440,7 @@ Arjan Huizing:
 
 \section*{Appendix}
 
-\subsection*{Additional result}
+\subsection*{Additional results}
 `<insert additional results not reported in the original article or results presented in an alternative way>`
 
 \subsection{Code organization}
