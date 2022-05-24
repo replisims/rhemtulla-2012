@@ -259,8 +259,7 @@ We hence assumed that additional indicators reused the same set of factor loadin
 \section{Results}
 
 \subsection{Replication of result figures}
-\subsection{Simulation descriptives}
-`<Describe the sampling distribution if any of the simulation parameters were sampled>`
+
 The original study provides descriptives for the simulated data in two figures.
 Figure 1 and Figure 2 of the original manuscript 
 
@@ -272,6 +271,13 @@ knitr::include_graphics("./figures/fig_3.png")
 knitr::include_graphics("./figures/fig3_original.png")
 ```
 
+The results pertaining to the robust ML estimator are largely comparable to the original results both in magnitude as well as regarding trend.
+Contrary to the original results our replication exhibited a larger downwards bias for N = 100.
+
+For N = 600 the results pertaining to the ULS estimator closely align with the original results. 
+For N = 100 we obtained parameter estimates that exhibited noticably more downwards bias especially for lower numbers of categories.
+
+These patterns also hold for the non-normal scenarios. The only exception being the 2-category scenario where large discrepancies can be observed for the ULS estimator and N = 600.
 
 ```{r fig4, fig.show = "hold", out.width = "49%", fig.cap= "Parameter estimates (factor loadings, underlying distribution is nonnormal; skew 2, kurtosis 7). Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper set of lines represents results for a true parameter value of .7. The lower set of lines represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry.Left figure: replication; right figure original study."}
 knitr::include_graphics("./figures/fig_4.png")
@@ -288,6 +294,9 @@ knitr::include_graphics("./figures/fig5_original.png")
 
 ```
 
+Parameter estimates for the factor correlations largely align with the original results. 
+For scenarios where N = 100, we observed a larger downwards bias, especially for scenarios with a low number of categories. 
+
 \subsubsection{Figure 6 and 7 Coverage (factor loadings)}
 
 ```{r fig6, fig.show = "hold", out.width = "49%", fig.cap= "Coverage by number of categories (.7 and .3 factor loadings); underlying distribution is normal. Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel represents results for a true parameter value of .7. The lower panel represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry. Left figure: replication; right figure original study."}
@@ -302,6 +311,9 @@ knitr::include_graphics("./figures/fig7.png")
 knitr::include_graphics("./figures/fig7_original.png")
 ```
 
+Regarding coverage the trends in our results correspond to the original findings. 
+Regarding magnitude, our results show consistently lower coverage especially with ML estimator and lower number of categories.
+
 \subsubsection{Figure 8 Coverage (factor correlations)}
 
 ```{r fig8, fig.show = "hold", out.width = "49%", fig.cap= "Coverage by number of categories (factor correlation). Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry. Left figure: replication; right figure original study."}
@@ -309,6 +321,12 @@ knitr::include_graphics("./figures/fig_8.png")
 
 knitr::include_graphics("./figures/fig8_original.png")
 ```
+
+Type I error of mean-and variance adjusted test statistic roughly aligns for symmetry and extreme asymmetry scenarios.
+In the Extreme Asymmetry Alternating scenarios the original study finds considerably higher type I error rates for scenarios pertaining to the ML estimator and N = 600. 
+
+Regarding coverage of the factor correlation our results closely align with the original findings considering trends. 
+Considering magnitude, coverage in the N=100 scenarios is consistently lower.
 
 \subsubsection{Type I error rate}
 ```{r fig9, fig.show = "hold", out.width = "49%", fig.cap= "Type I error of mean-and-variance adjusted test statistic by number of categories. Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry."}
@@ -334,7 +352,12 @@ knitr::include_graphics("./figures/table1.png")
 ```{r, out.width='325pt'}
 knitr::include_graphics("./figures/table2.png")
 ```
+Results regarding observed power closely aligned with the original findings.
+The scenarios exhibiting a power below .8 matched the ones identified in the original study.
 
+\subsection{REplication of supplemental results}
+The following tables correspond to tables presented in the supplemental material of the original study which can be accessed at
+http://dx.doi.org/10.1037/a0029315.supp
 
 \subsubsection{Number of nonconverged cases per 1000 replications}
 
@@ -359,7 +382,7 @@ knitr::include_graphics("./figures/tabA6.png")
 ```{r, out.width='325pt'}
 knitr::include_graphics("./figures/tabA7.png")
 ```
-
+<!--
 \subsection{Replication of results presented in text form}
 While the vast majority of results is presented in the form of figures,
 a few outcomes regarding outliers, relative bias of parameter estimates as well as 
@@ -382,7 +405,7 @@ Results pertaining to relative bias are only summarized in a more qualitative ma
  "ML standard errors are from 8% to 30% (average = 15%) smaller than empirical standard errors when the sample size is small, 
  and cat-LS standard errors are from 3% to 37% (average 13%) smaller than empirical standard errors when the sample size is small."
  "Cat-LS produces better robust standard errors for factor loadings, and ML produces better robust standard errors for factor correlations. This finding is consistent across number of categories.
-
+-->
 
 \FloatBarrier
 \section{Discussion}
@@ -402,8 +425,6 @@ The very first element of the method section was an overview of the simulation f
 Readability was increased by listing each factor as a separate bullet point.
 Subsequent sections detailed the implementation of each simulation factor.
 A separate subheading for each simulation factor made it easy to locate relevant information.
-
-The detailed description of error handling procedures as well as error descriptives ...
 
 The large number of result tables presented in the supplemental material is another exemplary reporting practice worth highlighting.
 While the comparison of hundreds of table cells is not an easy endeavor and the general interest in these tables likely limited
@@ -428,12 +449,22 @@ Having a code base from related simulation studies available would increase conf
 
 \subsection{Replicator degrees of freedom}
 We judge the replicator degrees of freedom in this replication to be very minimal.
-The only area for clarification
+The only area for clarification 
 
 `<Here you can discuss the replicator degrees of freedom. What could the authors have done to make it more clear? Do you think the replicator degrees of freedom are so extensive that they could influence the results?>`
 
 \subsection{Equivalence of results}
 `<How would you judge the overall equivalence of results? Are the orders of magnitude comparable? Are trends in the same direction? Would you draw the same conclusions as the authors based on your replication? Were some results not comparable because of insufficient figure resolution or labeling? Did the authors ommit some results which consequently cannot be compared?>`
+
+Although our replicated results do not perfectly align with the original study's findings, 
+the conclusions drawn by the authors largely mirror our own.
+Due to detailed descriptions of error frequency, we were able to detect that any scenarios with large discrepencies from the original study
+corresponded to scenarios with high numbers of errors.
+
+Figure 1 and two as well as table 1 suggest that our implementation of the data generating mechanism produced identical results to the original study. 
+Any discrepancies in results are thus likely due to differences in model estimation.
+Our results indicate poor performance of both estimators at low sample size and low numbers of categories. 
+Given the large number or errors (also encountered in the original study) it would have been advisable to report Monte Carlo errors to allow a more nuanced comparison of the magnitude of discrepancies.
 
 
 \section{Acknowledgments}

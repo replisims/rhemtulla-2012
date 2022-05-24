@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.4.1)  24 MAY 2022 20:34
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.4.1)  24 MAY 2022 23:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -818,6 +818,7 @@ File: ./figures/fig_4.png Graphic file (type bmp)
 <./figures/fig_4.png>
 File: ./figures/fig4_original.png Graphic file (type bmp)
 <./figures/fig4_original.png>
+[7]
 File: ./figures/fig_5.png Graphic file (type bmp)
 <./figures/fig_5.png>
 File: ./figures/fig5_original.png Graphic file (type bmp)
@@ -838,53 +839,56 @@ File: ./figures/fig_9.png Graphic file (type bmp)
 <./figures/fig_9.png>
 File: ./figures/fig9_original.png Graphic file (type bmp)
 <./figures/fig9_original.png>
-[7] [8] [9] [10]
+[8] [9] [10]
+File: ./figures/table1.png Graphic file (type bmp)
+<./figures/table1.png>
+[11]
 File: ./figures/table2.png Graphic file (type bmp)
 <./figures/table2.png>
 File: ./figures/tabA2_A3.png Graphic file (type bmp)
 <./figures/tabA2_A3.png>
-[11]
+[12]
 Overfull \vbox (13.5588pt too high) has occurred while \output is active []
 
-[12]
+[13]
 File: ./figures/tabA4_A5.png Graphic file (type bmp)
 <./figures/tabA4_A5.png>
-[13]
+[14]
 Overfull \vbox (14.00075pt too high) has occurred while \output is active []
 
-[14]
+[15]
 File: ./figures/tabA6.png Graphic file (type bmp)
 <./figures/tabA6.png>
-[15]
+[16]
 Overfull \vbox (41.09517pt too high) has occurred while \output is active []
 
-[16]
+[17]
 File: ./figures/tabA7.png Graphic file (type bmp)
 <./figures/tabA7.png>
-[17]
+[18]
 Overfull \vbox (43.7935pt too high) has occurred while \output is active []
 
-[18] [19] [20] [21] [22] [23] [24]
-Overfull \hbox (22.96541pt too wide) in paragraph at lines 803--803
+[19] [20] [21] [22] [23] [24] [25]
+Overfull \hbox (22.96541pt too wide) in paragraph at lines 824--824
 []\TU/UbuntuMono-Regular.ttf(0)/m/n/10 ## Local:    test C:/Users/alohmann/Dropbox (Personal)/anna/projects_new/replisims/replications/rhemtulla-2012[] 
  []
 
 
 AED: lastpage setting LastPage
-[25] (./Replication-Report-Rhemthulla-et-al-2012.aux)
+[26] (./Replication-Report-Rhemthulla-et-al-2012.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `Replication-Report-Rhemthulla-et-al-2012.out' has not changed.
-(rerunfilecheck)             Checksum: FDB6AF8C6D74B35A597FA29B2A24A75E;9729.
+(rerunfilecheck)             Checksum: E182499920E890BB7876984ADF9463E4;8919.
  ) 
 Here is how much of TeX's memory you used:
- 24260 strings out of 478179
- 506928 string characters out of 5852652
- 849104 words of memory out of 5000000
- 44428 multiletter control sequences out of 15000+600000
+ 24278 strings out of 478179
+ 507361 string characters out of 5852652
+ 849266 words of memory out of 5000000
+ 44445 multiletter control sequences out of 15000+600000
  473715 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  91i,12n,85p,909b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Replication-Report-Rhemthulla-et-al-2012.pdf (25 pages).
+Output written on Replication-Report-Rhemthulla-et-al-2012.pdf (26 pages).

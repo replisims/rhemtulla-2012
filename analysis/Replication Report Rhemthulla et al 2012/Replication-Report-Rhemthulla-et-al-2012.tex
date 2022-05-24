@@ -365,9 +365,7 @@ make any sense of''} (p.XY)
 \section{Results}
 
 \subsection{Replication of result figures}
-\subsection{Simulation descriptives}
 
-\texttt{\textless{}Describe\ the\ sampling\ distribution\ if\ any\ of\ the\ simulation\ parameters\ were\ sampled\textgreater{}}
 The original study provides descriptives for the simulated data in two
 figures. Figure 1 and Figure 2 of the original manuscript
 
@@ -376,6 +374,20 @@ figures. Figure 1 and Figure 2 of the original manuscript
 \begin{figure}
 \includegraphics[width=0.49\linewidth]{./figures/fig_3} \includegraphics[width=0.49\linewidth]{./figures/fig3_original} \caption{Parameter estimates (factor loadings, underlying distribution is normal). Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper set of lines represents results for a true parameter value of .7. The lower set of lines represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry. Left figure: replication; right figure original study.}\label{fig:fig3}
 \end{figure}
+
+The results pertaining to the robust ML estimator are largely comparable
+to the original results both in magnitude as well as regarding trend.
+Contrary to the original results our replication exhibited a larger
+downwards bias for N = 100.
+
+For N = 600 the results pertaining to the ULS estimator closely align
+with the original results. For N = 100 we obtained parameter estimates
+that exhibited noticably more downwards bias especially for lower
+numbers of categories.
+
+These patterns also hold for the non-normal scenarios. The only
+exception being the 2-category scenario where large discrepancies can be
+observed for the ULS estimator and N = 600.
 
 \begin{figure}
 \includegraphics[width=0.49\linewidth]{./figures/fig_4} \includegraphics[width=0.49\linewidth]{./figures/fig4_original} \caption{Parameter estimates (factor loadings, underlying distribution is nonnormal; skew 2, kurtosis 7). Values are averaged across model size and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper set of lines represents results for a true parameter value of .7. The lower set of lines represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry.Left figure: replication; right figure original study.}\label{fig:fig4}
@@ -387,6 +399,11 @@ figures. Figure 1 and Figure 2 of the original manuscript
 \includegraphics[width=0.49\linewidth]{./figures/fig_5} \includegraphics[width=0.49\linewidth]{./figures/fig5_original} \caption{Parameter estimates (factor correlation, true value is .3). Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry. Left figure: replication; right figure original study.}\label{fig:fig5}
 \end{figure}
 
+Parameter estimates for the factor correlations largely align with the
+original results. For scenarios where N = 100, we observed a larger
+downwards bias, especially for scenarios with a low number of
+categories.
+
 \subsubsection{Figure 6 and 7 Coverage (factor loadings)}
 
 \begin{figure}
@@ -397,11 +414,24 @@ figures. Figure 1 and Figure 2 of the original manuscript
 \includegraphics[width=0.49\linewidth]{./figures/fig7} \includegraphics[width=0.49\linewidth]{./figures/fig7_original} \caption{Coverage by number of categories (.7 and .3 factor loadings); underlying distribution is nonnormal (skew 2, kurtosis 7). Values are averaged across model size, and across all loadings for which the true parameter value was the same. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel represents results for a true parameter value of .7. The lower panel represents results for a true parameter value of .3. Vertical panels represent different levels of threshold symmetry. Left figure: replication; right figure original study.}\label{fig:fig7}
 \end{figure}
 
+Regarding coverage the trends in our results correspond to the original
+findings. Regarding magnitude, our results show consistently lower
+coverage especially with ML estimator and lower number of categories.
+
 \subsubsection{Figure 8 Coverage (factor correlations)}
 
 \begin{figure}
 \includegraphics[width=0.49\linewidth]{./figures/fig_8} \includegraphics[width=0.49\linewidth]{./figures/fig8_original} \caption{Coverage by number of categories (factor correlation). Values are averaged across model size. Lines represent different estimators and different sample sizes (see legend). ML = robust continuous maximum likelihood estimation; cat-LS = robust categorical least squares estimation. The upper panel corresponds to conditions in which the underlying distribution is normal; the lower panel corresponds to conditions in which the underlying distribution is nonnormal (skew 2, kurtosis 7). Vertical panels represent different levels of threshold symmetry. Left figure: replication; right figure original study.}\label{fig:fig8}
 \end{figure}
+
+Type I error of mean-and variance adjusted test statistic roughly aligns
+for symmetry and extreme asymmetry scenarios. In the Extreme Asymmetry
+Alternating scenarios the original study finds considerably higher type
+I error rates for scenarios pertaining to the ML estimator and N = 600.
+
+Regarding coverage of the factor correlation our results closely align
+with the original findings considering trends. Considering magnitude,
+coverage in the N=100 scenarios is consistently lower.
 
 \subsubsection{Type I error rate}
 \begin{figure}
@@ -425,9 +455,20 @@ symmetry. We hence only simulated one variable of sample size 1,000,000
 per condition in order to replicate figure 1, figure 2 as well as table
 1.
 
+\includegraphics[width=325pt]{./figures/table1}
+
 \subsubsection{Observed Power (Table 2)}
 
-\includegraphics[width=450pt]{./figures/table2}
+\includegraphics[width=325pt]{./figures/table2} Results regarding
+observed power closely aligned with the original findings. The scenarios
+exhibiting a power below .8 matched the ones identified in the original
+study.
+
+\subsection{REplication of supplemental results}
+
+The following tables correspond to tables presented in the supplemental
+material of the original study which can be accessed at
+\url{http://dx.doi.org/10.1037/a0029315.supp}
 
 \subsubsection{Number of nonconverged cases per 1000 replications}
 
@@ -444,42 +485,6 @@ per condition in order to replicate figure 1, figure 2 as well as table
 \subsubsection{Parameter Bias, Model1, Underlying Distribution = Skew2, Kurtosis 7}
 
 \includegraphics[width=325pt]{./figures/tabA7}
-
-\subsection{Replication of results presented in text form}
-
-While the vast majority of results is presented in the form of figures,
-a few outcomes regarding outliers, relative bias of parameter estimates
-as well as relative bias of robust standard errors are only communicated
-in text form.
-\texttt{\textless{}If\ the\ text\ describes\ any\ results\ using\ words\ describe\ how\ that\ relates\ to\ your\ findings.\textgreater{}}
-
-\subsubsection{Outliers}
-
-The original study reports the frequency of outliers in the text. There
-was one outlier in the original study. In our replication we found
-\ldots{}
-
-\subsubsection{Relative bias}
-
-Figures and tables report absolute bias. Results pertaining to relative
-bias are only summarized in a more qualitative manner in text form.
-\emph{``As the number of categories increases, ML estimates gradually
-become less biased and by five categories relative bias is always less
-than 10\%.''}(p.362) \emph{``When the underlying distribution is
-non-normal, all cat-LS parameter estimates take on a slightly positive
-bias (around 4\%), except when there are just two categories.''} (p.364)
-\emph{``{[}B{]}ias is almost never greater that 5\% with either
-method.''}
-
-\subsubsection{Relative bias for robust standard error estimates}
-
-``ML standard errors are from 8\% to 30\% (average = 15\%) smaller than
-empirical standard errors when the sample size is small, and cat-LS
-standard errors are from 3\% to 37\% (average 13\%) smaller than
-empirical standard errors when the sample size is small.'' ``Cat-LS
-produces better robust standard errors for factor loadings, and ML
-produces better robust standard errors for factor correlations. This
-finding is consistent across number of categories.
 
 \FloatBarrier
 \section{Discussion}
@@ -512,9 +517,6 @@ of the simulation factors. Readability was increased by listing each
 factor as a separate bullet point. Subsequent sections detailed the
 implementation of each simulation factor. A separate subheading for each
 simulation factor made it easy to locate relevant information.
-
-The detailed description of error handling procedures as well as error
-descriptives \ldots{}
 
 The large number of result tables presented in the supplemental material
 is another exemplary reporting practice worth highlighting. While the
@@ -557,11 +559,29 @@ oneself with the functionalities.
 
 \subsection{Replicator degrees of freedom}
 
+We judge the replicator degrees of freedom in this replication to be
+very minimal. The only area for clarification
+
 \texttt{\textless{}Here\ you\ can\ discuss\ the\ replicator\ degrees\ of\ freedom.\ What\ could\ the\ authors\ have\ done\ to\ make\ it\ more\ clear?\ Do\ you\ think\ the\ replicator\ degrees\ of\ freedom\ are\ so\ extensive\ that\ they\ could\ influence\ the\ results?\textgreater{}}
 
 \subsection{Equivalence of results}
 
 \texttt{\textless{}How\ would\ you\ judge\ the\ overall\ equivalence\ of\ results?\ Are\ the\ orders\ of\ magnitude\ comparable?\ Are\ trends\ in\ the\ same\ direction?\ Would\ you\ draw\ the\ same\ conclusions\ as\ the\ authors\ based\ on\ your\ replication?\ Were\ some\ results\ not\ comparable\ because\ of\ insufficient\ figure\ resolution\ or\ labeling?\ Did\ the\ authors\ ommit\ some\ results\ which\ consequently\ cannot\ be\ compared?\textgreater{}}
+
+Although our replicated results do not perfectly align with the original
+study's findings, the conclusions drawn by the authors largely mirror
+our own. Due to detailed descriptions of error frequency, we were able
+to detect that any scenarios with large discrepencies from the original
+study corresponded to scenarios with high numbers of errors.
+
+Figure 1 and two as well as table 1 suggest that our implementation of
+the data generating mechanism produced identical results to the original
+study. Any discrepancies in results are thus likely due to differences
+in model estimation. Our results indicate poor performance of both
+estimators at low sample size and low numbers of categories. Given the
+large number or errors (also encountered in the original study) it would
+have been advisable to report Monte Carlo errors to allow a more nuanced
+comparison of the magnitude of discrepancies.
 
 \section{Acknowledgments}
 
@@ -673,6 +693,7 @@ research compendium which can be found in the following git repository
 ## |   +-- tabA4_A5.png
 ## |   +-- tabA6.png
 ## |   +-- tabA7.png
+## |   +-- table1.png
 ## |   +-- table2.png
 ## |   +-- tableA10.html
 ## |   +-- tableA2_A3.html
@@ -715,7 +736,7 @@ research compendium which can be found in the following git repository
 
 \subsubsection*{Reproducibility Information}
 
-This report was last updated on 2022-05-24 20:34:23. The simulation
+This report was last updated on 2022-05-24 23:34:18. The simulation
 replication was conducted using the following computational environment
 and dependencies:
 
@@ -799,7 +820,7 @@ The current Git commit details are:
 \begin{verbatim}
 ## Local:    test C:/Users/alohmann/Dropbox (Personal)/anna/projects_new/replisims/replications/rhemtulla-2012
 ## Remote:   test @ origin (https://github.com/replisims/rhemtulla-2012.git)
-## Head:     [2bd9077] 2022-05-23: Add table 2 to report
+## Head:     [4d48583] 2022-05-24: Add a lot of figures
 \end{verbatim}
 
 
