@@ -189,12 +189,12 @@ We used these matrices as input for the \texttt{model()} function of the
 The original study indicated that data were generated using the
 Fleishman (1978) and Vale Maurelli (1983) method. We emulated this
 approach using the \texttt{generate()} function from the \texttt{simsem}
-package with the parameter \texttt{inDist} set to \texttt{NULL} in the
-normal case and to
+package (Version 0.5-16) with the parameter \texttt{inDist} set to
+\texttt{NULL} in the normal case and to
 \texttt{simsem::bindDist(skewness\ =\ 2,\ kurtosis\ =\ 7)} in the
 non-normal case. The \texttt{model} parameter from the
-\texttt{generate()} was specified as detailed above. This constituted
-the first step of the data generation.
+\texttt{generate()} function was specified as detailed above. This
+constituted the first step of the data generation.
 
 \subsubsection{Number of categories and Threshold symmetry}
 
@@ -205,11 +205,12 @@ each threshold symmetry, Z-scores for category thresholds could be
 obtained from the first table of the supplemental material. The sample
 covariance matrix of the resulting categorized data was tested for
 positive definiteness. In case it was found to be non-positive definite
-data was resampled with a different seed until it was. Additionally, it
-was ensured that none of the generated variables had zero variance.
-These measures are not documented in the original study. Hence, we do
-not know whether or at which point in the simulation pipeline these
-issues were dealt with.
+data was resampled with a different seed until it was positive definite.
+Additionally, it was ensured that none of the generated variables had
+zero variance. These measures are not documented in the original study
+but were implemented to avoid errors in code execution. Hence, we do not
+know whether or at which point in the simulation pipeline these issues
+were dealt with in the original study.
 
 \FloatBarrier 
 
@@ -219,24 +220,24 @@ The study compares the performance of robust normal theory maximum
 likelihood (ML) and robust categorical least squares (ULS) methodology
 for estimating confirmatory factor analysis (CFA) with ordinary
 variables. The underlying CFA model was fit using each of the two
-methods under investigation.
+methods under investigation. The ULS estimator is referred to as both
+cat-LS as well as ULS in the original study. We will refer to it as ULS
+for consistency in this report.
 
 \subsubsection{Robust normal theory maximum likelihood (ML)}
 
 CFA's were carried out using the \texttt{cfa()} function of the
-\texttt{lavaan} package. For the \emph{Robust normal theory maximum
-likelihood} approach we set the \texttt{estimator} argument to
-\texttt{MLVM}.
+\texttt{lavaan} package (Version 0.6-11). For the \emph{Robust normal
+theory maximum likelihood} approach we set the \texttt{estimator}
+argument to \texttt{"MLVM"}.
 
 \subsubsection{Robust categorical least squares (ULS)}
 
 The \emph{Robust categorical least squares (ULS)} approach was also
 implemented using the \texttt{cfa()} function from the \texttt{lavaan}
-package. In this case the \texttt{estimator} argument was set to
-\texttt{ULSMV}. Additionally, the \texttt{ordered} argument was set to
+package . In this case the \texttt{estimator} argument was set to
+\texttt{"ULSMV"}. Additionally, the \texttt{ordered} argument was set to
 \texttt{TRUE}.
-
-\texttt{\textless{}Describe\ how\ the\ second\ method\ is\ defined\ and\ implemented.\ You\ can\ include\ equations\ and\ or\ R\ code.\ If\ applicable,\ mention\ specialized\ R\ packages,\ their\ version\ as\ well\ as,\ parameters\ of\ specific\ functions.\textgreater{}}
 
 \subsection{Performance measures}
 
@@ -265,8 +266,8 @@ We extracted parameter estimates from the fitted lavaan object using the
 
 \subsubsection{Parameter Bias}
 
-The parameter bias was calculates as the difference of the mean estimate
-per scenario and the true value.
+The parameter bias was calculated as the difference of the mean estimate
+per scenario and the true value \$.
 
 \subsubsection{Coverage}
 
@@ -299,7 +300,7 @@ to indicate a model misspecification.
 The original simulation study was carried out in EQS (Version 6.1) as
 well as Mplus (Version 6.11). The authors of the original study report
 that data generation was carried out in EQS and data analysis was
-conducted using both EQS as well as MPlus. However, only results from
+conducted using both EQS as well as Mplus. However, only results from
 the Mplus analysis are reported. Our replication was implemented using
 the R programming environment (details regarding software versions can
 be obtained from the section Reproducibility Information). The
@@ -327,25 +328,26 @@ Justification
 \end{minipage} \\
 \midrule
 \endhead
-Data basis fig 1\&2, tab 1 & Simulate just one variable & it seemed
+Data basis fig 1\&2, tab 1 & Simulate just one variable & It seemed
 unlikely that dozens of variables from the models were collapsed \\
 Factor loadings of Model 2 & each factor loading is assumed to occur
-twice & most likely \\
+twice & Both replicators assumed this to be most likely \\
 Error handling & Case-wise deletion & Text indicated that ``cases'' were
 removed \\
+Number of scenarios & 480 & We assumed the ``420 conditions'' (p.362)
+was a typo as a full-factorial combination results in 480 scenarios
+which was also mentioned on page 359. \\
 \bottomrule
 \end{longtable}
 
 \subsubsection{Data basis for Figures 1 and 2}
 
-\texttt{\textless{}More\ details\ on\ how\ the\ information\ provided\ was\ insufficient,\ unclear\ or\ vague\textgreater{}}
-\emph{``Some weird quote from the original article that you could not
-make any sense of''} (p.XY) The text indicated that the data underlying
-figures 1 and 2 as well as table 1 were generated for each ``scenario''
-and a sample size of 1000000. We interpreted this to mean that one
-variable of length 1000000 was generated according to the specifications
-of each scenario although each scenario technically generated data
-according to an entire CFA model.
+The text indicated that the data underlying figures 1 and 2 as well as
+table 1 were generated for each ``scenario'' and a sample size of
+1000000. We interpreted this to mean that one variable of length 1000000
+was generated according to the specifications of each scenario although
+each scenario technically generated data according to an entire CFA
+model.
 
 \subsubsection{Factor loadings of model 2}
 
@@ -353,14 +355,19 @@ The original article indicated that \emph{``Model 2 was identical to
 Model 1, but with 10 indicators per factor.''}(p.359) No additional
 information regarding the factor loadings for these additional factor
 loadings was provided. We hence assumed that additional indicators
-reused the same set of factor loadings such that each loading occured
+reused the same set of factor loadings such that each loading occurred
 twice.
 
 \subsubsection{Error handling}
 
-\texttt{\textless{}More\ details\ on\ how\ the\ information\ provided\ was\ insufficient,\ unclear\ or\ vague\textgreater{}}
-\emph{``Some weird quote from the original article that you could not
-make any sense of''} (p.XY)
+The original article described that \texttt{Add\ more\ details\ here!!!}
+
+\subsubsection{Number of scenarios}
+
+Contrary to the 480 scenarios described in the methods section, the
+result section mentions 420 conditions (p.~362). As 480 is consistent
+with the number of scenarios obtained by fully crossing all simulation
+factors described, we assumed the 420 to be a typo.
 
 \section{Results}
 
@@ -455,16 +462,17 @@ symmetry. We hence only simulated one variable of sample size 1,000,000
 per condition in order to replicate figure 1, figure 2 as well as table
 1.
 
-\includegraphics[width=325pt]{./figures/table1}
+\includegraphics[width=385pt]{./figures/table1}
 
 \subsubsection{Observed Power (Table 2)}
 
-\includegraphics[width=325pt]{./figures/table2} Results regarding
-observed power closely aligned with the original findings. The scenarios
-exhibiting a power below .8 matched the ones identified in the original
-study.
+\includegraphics[width=385pt]{./figures/table2}
 
-\subsection{REplication of supplemental results}
+Results regarding observed power closely aligned with the original
+findings. The scenarios exhibiting a power below .8 matched the ones
+identified in the original study.
+
+\subsection{Replication of supplemental results}
 
 The following tables correspond to tables presented in the supplemental
 material of the original study which can be accessed at
@@ -736,7 +744,7 @@ research compendium which can be found in the following git repository
 
 \subsubsection*{Reproducibility Information}
 
-This report was last updated on 2022-05-24 23:34:18. The simulation
+This report was last updated on 2022-05-30 22:18:18. The simulation
 replication was conducted using the following computational environment
 and dependencies:
 
@@ -753,7 +761,7 @@ and dependencies:
 ##  collate  English_United States.1252
 ##  ctype    English_United States.1252
 ##  tz       Europe/Berlin
-##  date     2022-05-24
+##  date     2022-05-30
 ##  pandoc   2.17.1.1 @ C:/Program Files/RStudio/bin/quarto/bin/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
@@ -820,7 +828,7 @@ The current Git commit details are:
 \begin{verbatim}
 ## Local:    test C:/Users/alohmann/Dropbox (Personal)/anna/projects_new/replisims/replications/rhemtulla-2012
 ## Remote:   test @ origin (https://github.com/replisims/rhemtulla-2012.git)
-## Head:     [4d48583] 2022-05-24: Add a lot of figures
+## Head:     [51f8a3a] 2022-05-24: Add more results text.
 \end{verbatim}
 
 
