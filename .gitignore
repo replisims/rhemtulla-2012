@@ -43,3 +43,6 @@ vignettes/*.pdf
 *.rds
 *.RDS
 *.Rdata
+
+# Folders
+/dump/
