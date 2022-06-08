@@ -373,13 +373,13 @@ http://dx.doi.org/10.1037/a0029315.supp
 
 \subsubsection{Number of nonconverged cases per 1000 replications (A2/A3)}
 
-```{r, out.width='320pt'}
+```{r, out.width='315pt'}
 knitr::include_graphics("./figures/tabA2_A3.png")
 ```
 
 \subsubsection{Number of improper solutions per 1000 replications (A4/A5)}
 
-```{r, out.width='325pt'}
+```{r, out.width='315pt'}
 knitr::include_graphics("./figures/tabA4_A5.png")
 ```
 
