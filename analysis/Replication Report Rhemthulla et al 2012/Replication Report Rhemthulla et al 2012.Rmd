@@ -379,7 +379,7 @@ knitr::include_graphics("./figures/tabA4_A5.png")
 knitr::include_graphics("./figures/tabA6.png")
 ```
 
-\subsubsection{Parameter Bias, Model1, Underlying Distribution = Skew2, Kurtosis 7}
+\subsubsection{Parameter Bias, Model1, Underlying Distribution = Skew 2, Kurtosis 7}
 
 ```{r, out.width='325pt'}
 knitr::include_graphics("./figures/tabA7.png")
@@ -415,8 +415,8 @@ Results pertaining to relative bias are only summarized in a more qualitative ma
 \subsection{Replicability}
 Due to the high amount of details in the original publication and the corresponding supplemental materials the replication was straight forward.
 The largest amount of time was spent ensuring that the methods used for data generation and analysis did indeed correspond to what was used in the original study.
-This is, however, in no way the fault of the authors but rather due to limited documentation of the R packages used fro replication.
-On the contrary the detailed description of the implementation allowed for a close correspondence of methodology which would have otherwise been left to guesswork.
+This is, however, in no way the fault of the authors but rather due to limited documentation of the R packages used for replication.
+On the contrary, the detailed description of the implementation allowed for a close correspondence of methodology which would have otherwise been left to guesswork.
 
 A feature that deserves special praise with regards to facilitating replicability is the high amount of documentation that the authors dedicated to the generation of the
 simulated data as well as the descriptives of the same.
@@ -432,7 +432,7 @@ The large number of result tables presented in the supplemental material is anot
 While the comparison of hundreds of table cells is not an easy endeavor and the general interest in these tables likely limited
 it protects the authors against any allegations of selective reporting and makes the assessment of replicability possible.
 
-A similar structure could be found for the performance measures which were discussed in separate subsections separated by corresponding heading.
+A similar structure could be found for the performance measures which were discussed in separate subsections separated by corresponding headings.
 While very readable as is, we would have however preferred the performance measures to be elaborated on as part of the method section instead of the result section. 
 
 The introduction section included the presentation and discussion of several closely related methods as well as findings from previous studies investigating the same.
@@ -447,30 +447,23 @@ it consumes a significant amount of time to familiarize oneself with the exact p
 The inexperienced user is at the mercy of the package documentation and the occasional peek under the hood of a given function. 
 Having a code base from related simulation studies available would increase confidence in using such tools and avoid some trial and error while familiarizing oneself with the functionalities.
 
-`<Provide a general statement of how you experienced the replication process. Was it easy? What made it easy or difficult?>`
 
 \subsection{Replicator degrees of freedom}
 We judge the replicator degrees of freedom in this replication to be very minimal.
-The only area for clarification 
+The only area for clarification regards error handling where simply stating whether case or list wise deletion was applied would have been helpful.
 
-`<Here you can discuss the replicator degrees of freedom. What could the authors have done to make it more clear? Do you think the replicator degrees of freedom are so extensive that they could influence the results?>`
 
 \subsection{Equivalence of results}
-`<How would you judge the overall equivalence of results? Are the orders of magnitude comparable? Are trends in the same direction? Would you draw the same conclusions as the authors based on your replication? Were some results not comparable because of insufficient figure resolution or labeling? Did the authors ommit some results which consequently cannot be compared?>`
-
 Although our replicated results do not perfectly align with the original study's findings, 
 the conclusions drawn by the authors largely mirror our own.
-Due to detailed descriptions of error frequency, we were able to detect that any scenarios with large discrepencies from the original study
+Due to detailed descriptions of error frequency, we were able to detect that any scenarios with large discrepancies from the original study
 corresponded to scenarios with high numbers of errors.
 
-Figure 1 and two as well as table 1 suggest that our implementation of the data generating mechanism produced identical results to the original study. 
+Figure 1 and 2 as well as Table 1 suggest that our implementation of the data generating mechanism produced data sets resembling those of the original study. 
 Any discrepancies in results are thus likely due to differences in model estimation.
 Our results indicate poor performance of both estimators at low sample size and low numbers of categories. 
-Given the large number or errors (also encountered in the original study) it would have been advisable to report Monte Carlo errors to allow a more nuanced comparison of the magnitude of discrepancies.
+Given the large number of errors (also encountered in the original study) it would have been advisable to report Monte Carlo errors to allow a more nuanced comparison of the magnitude of discrepancies.
 
-
-\section{Acknowledgments}
-`<Acknowledge the help of anyone who assisted you in the process>`
 
 \section{Contributions}
 Authors made the following contributions according to the CRediT framework https://casrai.org/credit/
@@ -481,7 +474,7 @@ Anna Lohmann:
 - Formal Analysis (lead)  
 - Investigation  
 - Software  
-- Visualization (lead)  
+- Visualization 
 - Writing - Original Draft Preparation  
 - Writing - Review & Editing  
 
@@ -489,8 +482,7 @@ Arjan Huizing:
 
 - Formal Analysis (supporting)  
 - Investigation  
-- Software (supporting)  
-- Visualization (supporting)  
+- Software
 - Validation  
 - Writing - Review & Editing   
 

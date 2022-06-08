@@ -20,6 +20,16 @@ sim_fit_all_unnest <- simfitALL %>%
 saveRDS(sim_fit_all_unnest, "sim_fit_all_unnest.rds")
 
 
+if(!exists("sim_fit_all_unnest")){sim_fit_all_unnest <- readRDS("sim_fit_all_unnest.rds")}
+
+
+sim_fit_all_unnest_out <- sim_fit_all_unnest %>% 
+  dplyr::mutate(outlier = ifelse(se>1, TRUE, FALSE))
+
+sim_fit_all_unnest_no_out <- sim_fit_all_unnest %>% dplyr::filter(se<=1)
+saveRDS(sim_fit_all_unnest_no_out, "sim_fit_all_unnest_no_out.rds")
+
+
 # sim_fit_all_unnest_alt <- sim_fit_all_joined %>% 
 #   ungroup() %>% 
 #   group_by(scenario_id, rep) %>% 
@@ -40,14 +50,6 @@ sim_fit_all_unnest2 <- sim_fit_all_unnest %>%
                               label %in% lambda_06 ~ "l06",
                               label %in% lambda_07 ~ "l07",
                               label == "s1" ~ "s1"))
-
-# sim_fit_all_unnest2_alt <- sim_fit_all_unnest_alt %>% 
-#   mutate(par_type = case_when(label %in% lambda_03 ~ "l03",
-#                               label %in% lambda_04 ~ "l04",
-#                               label %in% lambda_05 ~ "l05",
-#                               label %in% lambda_06 ~ "l06",
-#                               label %in% lambda_07 ~ "l07",
-#                               label == "s1" ~ "s1"))
 
 
 # Labels ------------------------------------------------------------------
@@ -201,7 +203,7 @@ sim_fit_cov <- sim_fit_all_unnest2 %>%
   ungroup() %>% 
   rowwise() %>% 
   mutate(true_par = case_when(par_type == "l03" ~ 0.3,
-                              par_type == "l04" ~ 0.3,
+                              par_type == "l04" ~ 0.4,
                               par_type == "l05" ~ 0.5,
                               par_type == "l06" ~ 0.6,
                               par_type == "l07" ~ 0.7,
