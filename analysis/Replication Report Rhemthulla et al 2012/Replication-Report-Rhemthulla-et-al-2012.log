@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.30)  7 JUN 2022 20:13
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.6.8)  8 JUN 2022 23:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Replication-Report-Rhemthulla-et-al-2012.tex
 (./Replication-Report-Rhemthulla-et-al-2012.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-05-04> (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-06-02> (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -155,7 +155,7 @@ Package: fancyhdr 2022/05/18 v4.0.3 Extensive control of page headers and footer
 \f@nch@O@olf=\skip65
 \f@nch@O@orf=\skip66
 ) (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2022-05-04 L3 programming layer (loader) 
+Package: expl3 2022-06-02 L3 programming layer (loader) 
 (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2022-04-20 L3 backend support: XeTeX
 \g__graphics_track_int=\count274
@@ -164,7 +164,7 @@ File: l3backend-xetex.def 2022-04-20 L3 backend support: XeTeX
 \g__pdf_backend_annotation_int=\count276
 \g__pdf_backend_link_int=\count277
 ))
-Package: xparse 2022-01-12 L3 Experimental document command parser
+Package: xparse 2022-06-07 L3 Experimental document command parser
 )
 Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
 (c:/Users/alohmann/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
@@ -800,7 +800,7 @@ LaTeX Font Warning: Font shape `TU/Lato-Black.ttf(0)/b/n' undefined
 
 ]
 LaTeX Font Info:    Font shape `TU/UbuntuMono-Regular.ttf(0)/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 184.
+(Font)              scaled to size 8.99994pt on input line 185.
 [3] [4] [5] [6]
 File: ./figures/fig_3.png Graphic file (type bmp)
 <./figures/fig_3.png>
@@ -814,6 +814,7 @@ File: ./figures/fig_5.png Graphic file (type bmp)
 <./figures/fig_5.png>
 File: ./figures/fig5_original.png Graphic file (type bmp)
 <./figures/fig5_original.png>
+[7] [8]
 File: ./figures/fig_6.png Graphic file (type bmp)
 <./figures/fig_6.png>
 File: ./figures/fig6_original.png Graphic file (type bmp)
@@ -822,7 +823,6 @@ File: ./figures/fig7.png Graphic file (type bmp)
 <./figures/fig7.png>
 File: ./figures/fig7_original.png Graphic file (type bmp)
 <./figures/fig7_original.png>
-[7] [8] [9]
 File: ./figures/fig_8.png Graphic file (type bmp)
 <./figures/fig_8.png>
 File: ./figures/fig8_original.png Graphic file (type bmp)
@@ -831,7 +831,7 @@ File: ./figures/fig_9.png Graphic file (type bmp)
 <./figures/fig_9.png>
 File: ./figures/fig9_original.png Graphic file (type bmp)
 <./figures/fig9_original.png>
-[10] [11]
+[9] [10] [11]
 File: ./figures/table1.png Graphic file (type bmp)
 <./figures/table1.png>
 File: ./figures/table2.png Graphic file (type bmp)
@@ -852,35 +852,45 @@ Overfull \vbox (14.00075pt too high) has occurred while \output is active []
 File: ./figures/tabA6.png Graphic file (type bmp)
 <./figures/tabA6.png>
 [17]
-Overfull \vbox (41.09517pt too high) has occurred while \output is active []
-
-[18]
 File: ./figures/tabA7.png Graphic file (type bmp)
 <./figures/tabA7.png>
-[19]
-Overfull \vbox (43.7935pt too high) has occurred while \output is active []
-
-[20] [21] [22] [23] [24] [25] [26]
-Overfull \hbox (22.96541pt too wide) in paragraph at lines 832--832
+[18]
+File: ./figures/tabA8.png Graphic file (type bmp)
+<./figures/tabA8.png>
+File: ./figures/tabA9.png Graphic file (type bmp)
+<./figures/tabA9.png>
+[19] [20]
+File: ./figures/tabA10.png Graphic file (type bmp)
+<./figures/tabA10.png>
+File: ./figures/tabA11.png Graphic file (type bmp)
+<./figures/tabA11.png>
+[21]
+File: ./figures/tabA12.png Graphic file (type bmp)
+<./figures/tabA12.png>
+[22]
+File: ./figures/tabA13.png Graphic file (type bmp)
+<./figures/tabA13.png>
+[23] [24] [25] [26] [27] [28] [29] [30]
+Overfull \hbox (22.96541pt too wide) in paragraph at lines 812--812
 []\TU/UbuntuMono-Regular.ttf(0)/m/n/10 ## Local:    test C:/Users/alohmann/Dropbox (Personal)/anna/projects_new/replisims/replications/rhemtulla-2012[] 
  []
 
 
 AED: lastpage setting LastPage
-[27] (./Replication-Report-Rhemthulla-et-al-2012.aux)
+[31] (./Replication-Report-Rhemthulla-et-al-2012.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `Replication-Report-Rhemthulla-et-al-2012.out' has not changed.
-(rerunfilecheck)             Checksum: 838EC5C04852174A681CD04C0628F8E3;9088.
+(rerunfilecheck)             Checksum: 2EC1DE36E1D64F58B0E4122AD12DD95A;11731.
  ) 
 Here is how much of TeX's memory you used:
- 24300 strings out of 478132
- 508243 string characters out of 5851317
- 854481 words of memory out of 5000000
- 44514 multiletter control sequences out of 15000+600000
+ 24406 strings out of 478126
+ 510665 string characters out of 5851442
+ 862497 words of memory out of 5000000
+ 44622 multiletter control sequences out of 15000+600000
  473715 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  91i,12n,85p,909b,500s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Replication-Report-Rhemthulla-et-al-2012.pdf (27 pages).
+Output written on Replication-Report-Rhemthulla-et-al-2012.pdf (31 pages).
