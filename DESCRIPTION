@@ -1,0 +1,22 @@
+Package: rhemtulla2012
+Type: Package
+Title: This Package Replicates the 2012 Study by Rhemtulla, Brosseau-Liard and Savalei
+Version: 0.1.0
+Author: Arjan Huizing
+Maintainer: Arjan Huizing <arjan.huizing@tno.nl>
+Description: This package replicates the 2012 study by Rhemtulla, Brosseau-Liard 
+    and Savalei "When Can Categorical Variables Be Treated as Continuous? A 
+    Comparison of Robust Continuous and Categorical SEM Estimation Methods Under 
+    Suboptimal Conditions".
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 3.5)
+Imports:
+    dplyr (>= 0.8.2),
+    lavaan,
+    simsem,
+    tidyr,
+    purrr
+RoxygenNote: 7.1.2
